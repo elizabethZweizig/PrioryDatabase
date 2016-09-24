@@ -8,21 +8,45 @@
   <h2>Gabe</h2>
   <h2>Liz</h2>
   <ol>
+    <!-- /etc/apache2/apache2.conf -->
     <li>What command can you type into the terminal to check if apache is currently running?</li>
+    <p>service apache2 status</p>
+
     <li>What is the difference between ServerRoot and DocumentRoot?</li>
-    <li>What port does your web server listen to for HTTP connections from browsers? Can you change
-this port?</li>
-    <li>In what directory do you need to place all of your HTML and PHP documents for apache to serve
-them up? Test by navigating to this directory, and if your hunch is right, you should find some
-It Worked! HTML document.</li>
-    <li>What file contains all of Apache’s traffic logs? What about its error logs?</li>
+    <p>DocumentRoot is path to the files deliverable by the server. ServerRoot is path to executable in the server directory.</p>
+
+    <li>What port does your web server listen to for HTTP connections from browsers? Can you change this port?</li>
+    <p>HTTP is port 80. Change this port with "Listen &lt;new port>" in the ports.conf file.</p>
+
+    <li>In what directory do you need to place all of your HTML and PHP documents for apache to serve them up?
+      Test by navigating to this directory, and if your hunch is right, you should find some It Worked! HTML document.</li>
+      <p>HTML and PHP files should be put in the /var/www/html/ directory.</p>
+
+    <li>What file contains all of Apache's traffic logs? What about its error logs?</li>
+    <p>Traffic logs are in /var/log/apache2/access.log. Error logs are in /var/log/apache2/error.log.</p>
+
     <li>What is a directory index file? Why would it be nice to have one in each directory?</li>
-    <li>How do you give every user on your Linux machine their own web space? Look into public html?</li>
-    <li>How do you create a password protected directory (like I did for the class notes)? Look into
-htpasswd and .htaccess files.</li>
-    <li> When the browser tries to access a page that doesn’t exist, the HTTP protocol issues a 404 error
-code. There’s a way to send the browser to a particular document upon issuing this error. How?</li>
+    <p>A directory index file is an html file (usually called index.html) that contains a list of filenames.
+    DirectoryIndex sets a list of resources to look for when the client requests the directory index.
+    This can be used to navigate through a site.</p>
+
+    <li>How do you give every user on your Linux machine their own web space? Look into public_html?</li>
+    <p>Public_html is the directory where all users can put their html files so all clients can have access to the files.
+    These pages can generally be accessed with http://your_IP_addr/~username</p>
+
+    <li>How do you create a password protected directory (like I did for the class notes)? Look into .htpasswd and .htaccess files.</li>
+    <p>The .htaccess file provides a directory at root level that requires valid user info to be accessed.
+      The .htpasswd file contains usernames and passwords for the page or directory.</p>
+
+    <li>When the browser tries to access a page that doesn’t exist, the HTTP protocol issues a 404 error code.
+      There’s a way to send the browser to a particular document upon issuing this error. How?</li>
+    <p>You can use a page redirect to send the browser to a particular page after a 404 error with
+      &lt;meta HTTP-EQUIV="Refresh" CONTENT="5; URL=otherPage.htm">.</p>
+
     <li>Apache implements the HTTP protocol. The protocol is extremely simple, with just a few commands.
-What is the difference between the GET, POST, and HEAD commands?</li>
+      What is the difference between the GET, POST, and HEAD commands?</li>
+    <p>GET: used to retrieve data</p>
+    <p>POST: used to send data to the server - uses HTML forms</p>
+    <p>HEAD: like GET, but only sends the status line and header data</p>
   </ol>
 </body>
