@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+  <head>
+  </head>
+  <body>
+    <!--posts to passengers table in airport database-->
+    <h4>Passengers Info:</h4>
+    <form action="passengerParser.php" method="post">
+
+      <!--First name, required, string-->
+      First Name<font color="red">*</font>:
+      <input type="text" name="f_name" required/></br>
+
+      <!--middle name, string-->
+      Middle Name:
+      <input type="text" name="m_name"/></br>
+
+      <!--last name, required, string-->
+      Last Name<font color="red">*</font>:
+      <input type="text" name="l_name" required/></br>
+
+      <!--ssn, required, fff-ff-ffff style string-->
+      Social Security Number<font color="red">*</font>:
+      <input type="text" name="ssn" pattern="\d{3}-?\d{2}-?\d{4}" placeholder="111-11-1111" required/></br>
+
+      <!--submitting form and required explain-->
+      <input type="submit"/> <h6 style="color:red">*required</h6>
+    </form>
+  </body>
+
