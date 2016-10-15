@@ -60,7 +60,7 @@ try{
   else if ($table == 'onboard'){
     $row1 = $_GET['row1'];
     $row2 = $_GET['row2'];
-    $query4 = "SELECT * FROM onboard WHERE ssn = '$row1', flight_no = '$row2';";
+    $query4 = "SELECT * FROM onboard WHERE ssn = '$row1' AND flight_no = '$row2';";
     $result4 = $db->prepare($query4);
     $result4->execute();
     foreach($result4 as $tuple4){
