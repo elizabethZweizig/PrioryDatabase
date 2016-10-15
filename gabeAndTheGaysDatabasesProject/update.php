@@ -11,14 +11,16 @@ try{
     $query = "SELECT * FROM passengers WHERE ssn = '$row';";
     $result = $db->prepare($query);
     $result->execute();
-    echo "<form action = 'updateTable.php' method = 'post'>";
+    foreach($result as $tuple){
+      echo "<form action = 'updateTable.php' method = 'post'>";
     echo "<input type='hidden' name='table' value='$table'/></br>";
     echo "<input type='hidden' name='prim' value='$row'/></br>";
-    echo "<input type='text' name='f_name' value='$result[f_name]' required/></br>";
-    echo "<input type='text' name='m_name' value='$result[m_name]'/></br>";
-    echo "<input type='text' name='l_name' value='$result[_name]' required/></br>";
-    echo "<input type='text' name='ssn' pattern='\d{3}-?\d{2}-?\d{4}' value='$result[ssn]' required/></br>";
+    echo "<input type='text' name='f_name' value='$tuple[f_name]' required/></br>";
+    echo "<input type='text' name='m_name' value='$tuple[m_name]'/></br>";
+    echo "<input type='text' name='l_name' value='$tuple[_name]' required/></br>";
+    echo "<input type='text' name='ssn' pattern='\d{3}-?\d{2}-?\d{4}' value='$tuple[ssn]' required/></br>";
     echo "<input type='submit'></form>";
+    }
   }
   else if ($table == 'flights'){
     $row = $_GET['row'];
