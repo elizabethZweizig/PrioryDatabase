@@ -24,7 +24,7 @@ try{
   }
   else if ($table == 'flights'){
     $row = $_GET['row'];
-    $query2 = "SELECT * FROM passengers WHERE flight_no = '$row';";
+    $query2 = "SELECT * FROM flights WHERE flight_no = '$row';";
     $result2 = $db->prepare($query2);
     $result2->execute();
     foreach($result2 as $tuple2){
@@ -42,7 +42,7 @@ try{
   }
   else if ($table == 'planes'){
     $row = $_GET['row'];
-    $query3 = "SELECT * FROM passengers WHERE tail_no = '$row';";
+    $query3 = "SELECT * FROM planes WHERE tail_no = '$row';";
     $result3 = $db->prepare($query3);
     $result3->execute();
     foreach($result3 as $tuple3){
@@ -60,7 +60,7 @@ try{
   else if ($table == 'onboard'){
     $row1 = $_GET['row1'];
     $row2 = $_GET['row2'];
-    $query4 = "SELECT * FROM passengers WHERE ssn = '$row1', flight_no = '$row2';";
+    $query4 = "SELECT * FROM onboard WHERE ssn = '$row1', flight_no = '$row2';";
     $result4 = $db->prepare($query4);
     $result4->execute();
     foreach($result4 as $tuple4){
