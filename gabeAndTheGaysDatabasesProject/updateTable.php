@@ -16,7 +16,7 @@ try{
   }
   else if ($table == 'planes'){
 
-    $db->query("update planes set tail_no = '$_POST[tail_no]', make = '$_POST[make]', model = '$_POST[model]', capacity = '$_POST[capicity]', mph = '$_POST[mph]' where tail_no = '$_POST[prim]';");
+    $db->query("update planes set tail_no = '$_POST[tail_no]', make = '$_POST[make]', model = '$_POST[model]', capacity = '$_POST[capacity]', mph = '$_POST[mph]' where tail_no = '$_POST[prim]';");
 
   }
   else if ($table == 'flights'){
