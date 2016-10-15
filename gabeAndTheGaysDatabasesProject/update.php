@@ -5,9 +5,9 @@ try{
   // Set errormode to exceptions
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   //prev page data
-  $table = $_GET[table];
+  $table = $_GET['table'];
   if ($table == 'passengers'){
-    $row = $_GET[row];
+    $row = $_GET['row'];
     $query = "SELECT * FROM passengers WHERE ssn = '$row';";
     $result = $db->prepare($query);
     $result->execute();
@@ -25,7 +25,7 @@ try{
     echo "<input type='submit'></form>";
   }
   else if ($table == 'flights'){
-    $row = $_GET[row];
+    $row = $_GET['row'];
       $query = "SELECT * FROM passengers WHERE flight_no = '$row';";
     $result = $db->prepare($query);
      $result->execute();
@@ -41,7 +41,7 @@ try{
       echo "<input type='submit'></form>";
   }
   else if ($table == 'planes'){
-    $row = $_GET[row];
+    $row = $_GET['row'];
       $query = "SELECT * FROM passengers WHERE tail_no = '$row';";
       $result = $db->prepare($query);
      $result->execute();
@@ -56,8 +56,8 @@ try{
       echo "<input type='submit'></form>";
   }
   else if ($table == 'onboard'){
-  $row1 = $_GET[row1];
-  $row2 = $_GET[row2];
+  $row1 = $_GET['row1'];
+  $row2 = $_GET['row2'];
       $query = "SELECT * FROM passengers WHERE ssn = '$row1', flight_no = '$row2';";
       $result = $db->prepare($query);
      $result->execute();
