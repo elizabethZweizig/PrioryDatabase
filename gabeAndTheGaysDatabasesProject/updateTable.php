@@ -7,7 +7,7 @@ try{
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   //thing to be updated
-  $table = $_POST['table'];
+  $table = "$_POST['table']";
 
   if ($table == 'passengers'){
 
