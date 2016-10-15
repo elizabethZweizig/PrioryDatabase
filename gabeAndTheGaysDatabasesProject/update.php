@@ -6,23 +6,26 @@ try{
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   //prev page data
   $table = $_GET[table];
-  $row = $_GET[row];
-  $row1 = $_GET[row1];
-  $row2 = $_GET[row2];
   if ($table == 'passengers'){
-    $query = "SELECT * FROM passengers WHERE ssn = $row";
-    $result = $db->query($query);
+    $row = $_GET[row];
+    $query = "SELECT * FROM passengers WHERE ssn = '$row';";
+    $result = $db->prepare($query);
+    $result->execute();
+    $result->bindColumn('f_name', $first);
+    $result->bindColumn('m_name', $middle);
+    $result->bindColumn('l_name', $last);
+    $result->bindColumn('ssn', $social);
     echo "<form action = 'updateTable.php' method = 'post'>";
     echo "<input type='hidden' name='table' value='$table'/></br>";
     echo "<input type='hidden' name='prim' value='$row'/></br>";
-    echo "<input type='text' name='f_name' value='$result[f_name]' required/></br>";
-    echo "<input type='text' name='m_name' value='$result[m_name]'/></br>";
-    echo "<input type='text' name='l_name' value='$result[l_name]' required/></br>";
-    echo "<input type='text' name='ssn' pattern='\d{3}-?\d{2}-?\d{4}' value='$result[ssn]' required/></br>";
+    echo "<input type='text' name='f_name' value='$first' required/></br>";
+    echo "<input type='text' name='m_name' value='$middle'/></br>";
+    echo "<input type='text' name='l_name' value='$last' required/></br>";
+    echo "<input type='text' name='ssn' pattern='\d{3}-?\d{2}-?\d{4}' value='$social' required/></br>";
     echo "<input type='submit'></form>";
-  }
   else if ($table == 'flights'){
-      $query = "SELECT * FROM passengers WHERE ssn = $row";
+    $row = $_GET[row];
+      $query = "SELECT * FROM passengers WHERE flight_no = '$row';";
       $result = $db->query($query);
       echo "<form action = 'updateTable.php' method = 'post'>";
       echo "<input type='hidden' name='table' value='$table'/></br>";
@@ -36,7 +39,8 @@ try{
       echo "<input type='submit'></form>";
   }
   else if ($table == 'planes'){
-      $query = "SELECT * FROM passengers WHERE ssn = $row";
+    $row = $_GET[row];
+      $query = "SELECT * FROM passengers WHERE tail_no = '$row';";
       $result = $db->query($query);
       echo "<form action = 'updateTable.php' method = 'post'>";
       echo "<input type='hidden' name='table' value='$table'/></br>";
@@ -49,7 +53,9 @@ try{
       echo "<input type='submit'></form>";
   }
   else if ($table == 'onboard'){
-      $query = "SELECT * FROM passengers WHERE ssn = $row";
+  $row1 = $_GET[row1];
+  $row2 = $_GET[row2];
+      $query = "SELECT * FROM passengers WHERE ssn = '$row1', flight_no = '$row2';";
       $result = $db->query($query);
       echo "<form action = 'updateTable.php' method = 'post'>";
       echo "<input type='hidden' name='table' value='$table'/></br>";
