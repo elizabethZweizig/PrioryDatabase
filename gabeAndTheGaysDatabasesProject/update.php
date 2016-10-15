@@ -8,69 +8,69 @@ try{
   $table = $_GET['table'];
   if ($table == 'passengers'){
     $row = $_GET['row'];
-    $query = "SELECT * FROM passengers WHERE ssn = '$row';";
-    $result = $db->prepare($query);
-    $result->execute();
-    foreach($result as $tuple){
+    $query1 = "SELECT * FROM passengers WHERE ssn = '$row';";
+    $result1 = $db->prepare($query1);
+    $result1->execute();
+    foreach($result1 as $tuple1){
       echo "<form action = 'updateTable.php' method = 'post'>";
-    echo "<input type='hidden' name='table' value='$table'/></br>";
-    echo "<input type='hidden' name='prim' value='$row'/></br>";
-    echo "<input type='text' name='f_name' value='$tuple[f_name]' required/></br>";
-    echo "<input type='text' name='m_name' value='$tuple[m_name]'/></br>";
-    echo "<input type='text' name='l_name' value='$tuple[l_name]' required/></br>";
-    echo "<input type='text' name='ssn' pattern='\d{3}-?\d{2}-?\d{4}' value='$tuple[ssn]' required/></br>";
-    echo "<input type='submit'></form>";
+      echo "<input type='hidden' name='table' value='$table'/></br>";
+      echo "<input type='hidden' name='prim' value='$row'/></br>";
+      echo "<input type='text' name='f_name' value='$tuple1[f_name]' required/></br>";
+      echo "<input type='text' name='m_name' value='$tuple1[m_name]'/></br>";
+      echo "<input type='text' name='l_name' value='$tuple1[l_name]' required/></br>";
+      echo "<input type='text' name='ssn' pattern='\d{3}-?\d{2}-?\d{4}' value='$tuple1[ssn]' required/></br>";
+      echo "<input type='submit'></form>";
     }
   }
   else if ($table == 'flights'){
     $row = $_GET['row'];
-      $query = "SELECT * FROM passengers WHERE flight_no = '$row';";
-    $result = $db->prepare($query);
-     $result->execute();
-    foreach($result as $tuple){
+    $query2 = "SELECT * FROM passengers WHERE flight_no = '$row';";
+    $result2 = $db->prepare($query2);
+    $result2->execute();
+    foreach($result2 as $tuple2){
       echo "<form action = 'updateTable.php' method = 'post'>";
       echo "<input type='hidden' name='table' value='$table'/></br>";
       echo "<input type='hidden' name='prim' value='$row'/></br>";
-      echo "<input type='text' name='flight_no' value='$tuple[flight_no]' required/></br>";
-      echo "<input type='text' name='m_name' value='$tuple[dep_loc]'/></br>";
-      echo "<input type='text' name='dep_time' value='$tuple[dep_time]' required/></br>";
-      echo "<input type='text' name='arr_loc' value='$tuple[arr_loc]' required/></br>";
-      echo "<input type='text' name='arr_time' value='$tuple[arr_time]' required/></br>";
-      echo "<input type='text' name='tail_no' value='$tuple[tail_no]' required/></br>";
+      echo "<input type='text' name='flight_no' value='$tuple2[flight_no]' required/></br>";
+      echo "<input type='text' name='m_name' value='$tuple2[dep_loc]'/></br>";
+      echo "<input type='text' name='dep_time' value='$tuple2[dep_time]' required/></br>";
+      echo "<input type='text' name='arr_loc' value='$tuple2[arr_loc]' required/></br>";
+      echo "<input type='text' name='arr_time' value='$tuple2[arr_time]' required/></br>";
+      echo "<input type='text' name='tail_no' value='$tuple2[tail_no]' required/></br>";
       echo "<input type='submit'></form>";
     }
   }
   else if ($table == 'planes'){
     $row = $_GET['row'];
-      $query = "SELECT * FROM passengers WHERE tail_no = '$row';";
-      $result = $db->prepare($query);
-     $result->execute();
-    foreach($result as $tuple){
+    $query3 = "SELECT * FROM passengers WHERE tail_no = '$row';";
+    $result3 = $db->prepare($query3);
+    $result3->execute();
+    foreach($result3 as $tuple3){
       echo "<form action = 'updateTable.php' method = 'post'>";
       echo "<input type='hidden' name='table' value='$table'/></br>";
       echo "<input type='hidden' name='prim' value='$row'/></br>";
-      echo "<input type='text' name='tail_no' value='$tuple[tail_no]' required/></br>";
-      echo "<input type='text' name='make' value='$tuple[make]'/></br>";
-      echo "<input type='text' name='model' value='$tuple[model]' required/></br>";
-      echo "<input type='text' name='capacity' value='$tuple[capacity]' required/></br>";
-      echo "<input type='text' name='mph' value='$tuple[mph]' required/></br>";
+      echo "<input type='text' name='tail_no' value='$tuple3[tail_no]' required/></br>";
+      echo "<input type='text' name='make' value='$tuple3[make]'/></br>";
+      echo "<input type='text' name='model' value='$tuple3[model]' required/></br>";
+      echo "<input type='text' name='capacity' value='$tuple3[capacity]' required/></br>";
+      echo "<input type='text' name='mph' value='$tuple3[mph]' required/></br>";
       echo "<input type='submit'></form>";
     }
   }
   else if ($table == 'onboard'){
-  $row1 = $_GET['row1'];
-  $row2 = $_GET['row2'];
-      $query = "SELECT * FROM passengers WHERE ssn = '$row1', flight_no = '$row2';";
-      $result = $db->prepare($query);
-     $result->execute();
-    foreach($result as $tuple){
+    $row1 = $_GET['row1'];
+    $row2 = $_GET['row2'];
+    $query4 = "SELECT * FROM passengers WHERE ssn = '$row1', flight_no = '$row2';";
+    $result4 = $db->prepare($query4);
+    $result4->execute();
+    foreach($result4 as $tuple4){
       echo "<form action = 'updateTable.php' method = 'post'>";
       echo "<input type='hidden' name='table' value='$table'/></br>";
       echo "<input type='hidden' name='prim1' value='$row1'/></br>";
       echo "<input type='hidden' name='prim2' value='$row2'/></br>";
-      echo "<input type='text' name='ssn' value='$tuple[ssn]' required/></br>";
-      echo "<input type='text' name='flight_no' value='$tuple[flight_no]'/></br>";
-      echo "<input type='text' name='seat' value='$tuple[seat]' required/></br>";
+      echo "<input type='text' name='ssn' value='$tuple4[ssn]' required/></br>";
+      echo "<input type='text' name='flight_no' value='$tuple4[flight_no]'/></br>";
+      echo "<input type='text' name='seat' value='$tuple4[seat]' required/></br>";
       echo "<input type='submit'></form>";
     }
   }
