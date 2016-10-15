@@ -16,12 +16,12 @@ try{
     $result->bindColumn('l_name', $last);
     $result->bindColumn('ssn', $social);
     echo "<form action = 'updateTable.php' method = 'post'>";
-    echo "<input type='hidden' name='table' value='$table'/></br>";
-    echo "<input type='hidden' name='prim' value='$row'/></br>";
-    echo "<input type='text' name='f_name' value='$first' required/></br>";
-    echo "<input type='text' name='m_name' value='$middle'/></br>";
-    echo "<input type='text' name='l_name' value='$last' required/></br>";
-    echo "<input type='text' name='ssn' pattern='\d{3}-?\d{2}-?\d{4}' value='$social' required/></br>";
+    echo "<input type='hidden' name='table' placeholder='$table' value='$table'/></br>";
+    echo "<input type='hidden' name='prim' placeholder='$row' value='$row'/></br>";
+    echo "<input type='text' name='f_name' placeholder='$first' value='$first' required/></br>";
+    echo "<input type='text' name='m_name' placeholder='$middle' value='$middle'/></br>";
+    echo "<input type='text' name='l_name' placeholder='$last' value='$last' required/></br>";
+    echo "<input type='text' name='ssn' pattern='\d{3}-?\d{2}-?\d{4}' placeholder='$social' value='$social' required/></br>";
     echo "<input type='submit'></form>";
   }
   else if ($table == 'flights'){
