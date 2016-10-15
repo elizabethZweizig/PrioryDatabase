@@ -32,7 +32,7 @@ try{
       echo "<input type='hidden' name='table' value='$table'/></br>";
       echo "<input type='hidden' name='prim' value='$row'/></br>";
       echo "<input type='text' name='flight_no' value='$tuple2[flight_no]' required/></br>";
-      echo "<input type='text' name='m_name' value='$tuple2[dep_loc]'/></br>";
+      echo "<input type='text' name='dep_loc' value='$tuple2[dep_loc]'/></br>";
       echo "<input type='text' name='dep_time' value='$tuple2[dep_time]' required/></br>";
       echo "<input type='text' name='arr_loc' value='$tuple2[arr_loc]' required/></br>";
       echo "<input type='text' name='arr_time' value='$tuple2[arr_time]' required/></br>";
