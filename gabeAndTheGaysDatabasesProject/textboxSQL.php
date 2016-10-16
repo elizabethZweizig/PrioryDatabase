@@ -28,10 +28,40 @@ try
 
                         $result = $db->query($value,PDO::FETCH_ASSOC);
 
-                        $array = $result->fetchAll();
-                        print_r($array);
+                       $array = $result->fetchAll();
+//                      print_r($array);        // for testing only
+//                      echo "<br>";
 
-                }
+
+                       echo "<table border='1'>";
+                       $i = 0;
+                       foreach ($array as $tuple)
+                       {
+//                              print_r($tuple);        // for testing only
+//                              echo "<br>";
+                               if ($i == "0") {
+                                       echo "<tr style='font-weight:bold'>";
+                                       foreach ($tuple as $key => $value)
+                                       {
+                                               echo "<td>";
+                                               print_r($key);
+                                               echo "</td>";
+                                       }
+                                       echo "</tr>";
+                               }
+                               echo "<tr>";
+                               foreach ($tuple as $key => $value)
+                               {
+                                       echo "<td>";
+                                       print_r($value);
+                                       echo "</td>";
+                               }
+                               echo "</tr>";
+                               $i++;
+                       }
+                       echo "</table>";
+               }
+
 catch(PDOException $e)
                 {
                         die('Exception : '.$e->getMessage());
