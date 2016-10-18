@@ -28,7 +28,7 @@ try{
     //double primary key
     $ssnPrim = $_POST['prim1'];
     $flight_noPrim = $_POST['prim2'];
-    $db->query("update onboard set ssn='$_POST[ssn]', flight_no='$_POST[flight_no]', seat='$_POST[seat]' where ssn=$ssnPrim AND flight_no=$flight_noPrim;");
+    $db->query("update onboard set ssn='$_POST[ssn]', flight_no='$_POST[flight_no]', seat='$_POST[seat]' where ssn='$ssnPrim' AND flight_no='$flight_noPrim';");
   }
   else {
     die('Exception : Table not valid.');
