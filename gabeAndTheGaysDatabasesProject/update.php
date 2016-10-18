@@ -68,9 +68,9 @@ try{
       echo "<input type='hidden' name='table' value='$table'/></br>";
       echo "<input type='hidden' name='prim1' value='$row1'/></br>";
       echo "<input type='hidden' name='prim2' value='$row2'/></br>";
-      echo "<input type='text' name='ssn' value='$tuple4[ssn]' required/></br>";
+      echo "<input type='text' name='ssn' value='$tuple4[ssn]' /></br>";
       echo "<input type='text' name='flight_no' value='$tuple4[flight_no]'/></br>";
-      echo "<input type='text' name='seat' value='$tuple4[seat]' required/></br>";
+      echo "<input type='text' name='seat' value='$tuple4[seat]' /></br>";
       echo "<input type='submit'></form>";
     }
   }
