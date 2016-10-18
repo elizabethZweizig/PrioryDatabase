@@ -41,7 +41,7 @@
                 $socialsec = $_POST['ssn'];
 
                 // prepares the sql statement
-                $sqlStatement = $db->prepare("insert into passengers (f_name, m_name, l_name, ssn) values (:f_name, :m_name,$
+								$sqlStatement = $db->prepare("insert into passengers (f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");
 
                 // binds parameters to be used in sql statement
                 $sqlStatement->bindParam(':f_name', $firstname);
