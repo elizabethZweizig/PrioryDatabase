@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+  <head>
+  <title>Program Registrations</title>
+  </head>
+  <body>
+    <h4>Program Registrations</h4>
+    <form action="DayProgramRegister.php" method="post">
+      <!--Program name, required, string-->
+      Program<font color="red">*</font>:
+      <input type="text" name="programName" required/></br>
+
+      <!--contact person, hidden, gotten from page value?-->
+      <!--TODO: getting of pID from sign in (page only accessible if has account)-->
+      <input type="hidden" name="contact" value="$_GET['pID']"/></br>
+
+      <!--submitting form and required explain-->
+      <input type="submit"/> <h6 style="color:red">*required</h6>
+    </form>
+  </body>

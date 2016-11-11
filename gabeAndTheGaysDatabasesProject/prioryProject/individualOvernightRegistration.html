@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+  <head>
+  <title>Individual Overnight Registrations</title>
+  </head>
+  <body>
+    <h4>Overnight Reservation:</h4>
+    <form action="individualOvernightRegister.php" method="post">
+
+      <!--contact person, hidden, gotten from page value?-->
+      <!--TODO: getting of pID from sign in (page only accessible if has account)-->
+      <input type="hidden" name="" value="$_GET['pID']"/>
+
+
+      <!--TODO: Bedroom allocation-->
+
+      <!--numPpl for indiv is 1-->
+      <input type="hidden" name="" value="1"/>
+
+      <!--Check in date, required, date-->
+      Check in<font color="red">*</font>:
+      <input type="date" name="checkInDate" required/>
+
+      <!--Check in time, required, time-->
+      <input type="time" name="checkInTime" required/></br>
+
+      <!--Check out date, required, date-->
+      Check out<font color="red">*</font>:
+      <input type="date" name="checkOutDate" required/>
+
+      <!--Check out time, required, time-->
+      <input type="time" name="checkInTime" required/></br>
+
+      <!--Tour needed, boolean-->
+      Would you like to go on a tour of our facilities?
+      <input type="radio" name="tour" value="true" checked> Yes.<br>
+      <input type="radio" name="tour" value="false"> No.<br>
+
+      <!--submitting form and required explain-->
+      <input type="submit"/> <h6 style="color:red">*required</h6>
+    </form>
+  </body>
