@@ -23,10 +23,10 @@ CREATE TABLE equipment (
 
 CREATE TABLE equipRes (
   equipID INTEGER,
-  pID TEXT,
-  dateUsed TEXT CHECK(GLOB('YYYY-MM-DD', dateUsed)),
-  timeIn TEXT CHECK(GLOB('HH:MM', timeIn)),
-  timeOut TEXT CHECK(GLOB('HH:MM', timeOut)),
+  pID INTEGER,
+  dateUsed TEXT CHECK(GLOB('????-??-??', dateUsed)),
+  timeIn TEXT CHECK(GLOB('??:??', timeIn)),
+  timeOut TEXT CHECK(GLOB('??:??', timeOut)),
   FOREIGN KEY (equipID) REFERENCES equipment(equipID) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (pID) REFERENCES login(pID)ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY (equipID, dateUsed, timeIn)
@@ -39,15 +39,15 @@ CREATE TABLE bedroom (
 );
 
 CREATE TABLE bedRes (
-  pID TEXT,
+  pID INTEGER,
   bedID TEXT,
   numPpl INTEGER CHECK (numPpl >= 0),
   --  CHECK (bedRes(numPpl) <= bedroom(maxPpl)), -- check numppl is less than max in room - do this in html??
-  checkIn TEXT CHECK(GLOB('YYYY-MM-DD', checkIn)),
-  checkOut TEXT CHECK(GLOB('YYYY-MM-DD', checkOut)),
-  timeIn TEXT CHECK(GLOB('HH:MM', timeIn)),
-  timeOut TEXT CHECK(GLOB('HH:MM', timeOut)),
-  dateRecvd TEXT CHECK(GLOB('YYYY-MM-DD', dateRecvd)),
+  checkIn TEXT CHECK(GLOB('????-??-??', checkIn)),
+  checkOut TEXT CHECK(GLOB('????-??-??', checkOut)),
+  timeIn TEXT CHECK(GLOB('??:??', timeIn)),
+  timeOut TEXT CHECK(GLOB('??:??', timeOut)),
+  dateRecvd TEXT CHECK(GLOB('????-??-??', dateRecvd)),
   FOREIGN KEY (pID) REFERENCES login(pID) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (bedID) REFERENCES bedroom(bedID) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY (bedID, checkIn)
@@ -61,13 +61,13 @@ CREATE TABLE meetRoom (
 
 CREATE TABLE meetRes (
   roomID TEXT,
-  pID TEXT,
+  pID INTEGER,
   numPpl INTEGER CHECK (numPpl >= 0),
   -- CHECK(meetRes(numPpl) <= meetRoom(maxPpl)), --check peple thing
-  dateUsed TEXT CHECK(GLOB('YYYY-MM-DD', dateUsed)),
-  timeIn TEXT CHECK(GLOB('HH:MM', timeIn)),
-  timeOut TEXT CHECK(GLOB('HH:MM', timeOut)),
-  dateRecvd TEXT CHECK(GLOB('YYYY-MM-DD', dateRecvd)),
+  dateUsed TEXT CHECK(GLOB('????-??-??', dateUsed)),
+  timeIn TEXT CHECK(GLOB('??:??', timeIn)),
+  timeOut TEXT CHECK(GLOB('??:??', timeOut)),
+  dateRecvd TEXT CHECK(GLOB('????-??-??', dateRecvd)),
   FOREIGN KEY (roomID) REFERENCES meetRoom(roomID) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (pID) REFERENCES login(pID) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY (roomID, dateUsed, timeIn)
@@ -78,9 +78,9 @@ CREATE TABLE program (
   contact INTEGER, --person in charge of program - NOT pID
   roomID TEXT, --room they are in (might be more than one?)
   cost REAL CHECK (cost >= 0),
-  dateUsed TEXT CHECK(GLOB('YYYY-MM-DD', dateUsed)),
-  timeIn TEXT CHECK(GLOB('HH:MM', timeIn)),
-  timeOut TEXT CHECK(GLOB('HH:MM', timeOut)),
+  dateUsed TEXT CHECK(GLOB('????-??-??', dateUsed)),
+  timeIn TEXT CHECK(GLOB('??:??', timeIn)),
+  timeOut TEXT CHECK(GLOB('??:??', timeOut)),
   FOREIGN KEY (contact) REFERENCES login(pID) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (roomID) REFERENCES meetRoom(roomID) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY (programName, contact, dateUsed, timeIn)
@@ -88,9 +88,9 @@ CREATE TABLE program (
 
 CREATE TABLE programRoster ( -- think onboard table
   programName TEXT, -- what program they are attending
-  pID TEXT, -- pID of contactperson for group attending program
+  pID INTEGER, -- pID of contactperson for group attending program
   numPpl INTEGER, -- number of people associated with group
-  dateRecvd TEXT CHECK(GLOB('YYYY-MM-DD', dateRecvd)),
+  dateRecvd TEXT CHECK(GLOB('????-??-??', dateRecvd)),
   FOREIGN KEY (programName) REFERENCES program(programName) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (pID) REFERENCES login(pID) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY (programName, pID)
