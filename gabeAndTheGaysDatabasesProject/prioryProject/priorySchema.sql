@@ -18,7 +18,8 @@ CREATE TABLE login (
 CREATE TABLE equipment (
   equipID INTEGER PRIMARY KEY,
   type TEXT, --what the thing is
-  equipRate REAL CHECK (equipRate >= 0) --how much to rent the thing for - hourly rate?
+  equipRate REAL CHECK (equipRate >= 0), --how much to rent the thing for - hourly rate?
+  notes TEXT
 );
 
 CREATE TABLE equipRes (
@@ -56,7 +57,8 @@ CREATE TABLE bedRes (
 CREATE TABLE meetRoom (
   roomID TEXT PRIMARY KEY,
   maxPpl INTEGER CHECK (maxPpl >= 0),
-  meetRate REAL CHECK (meetRate >= 0) --how much to rent the room for - hourly rate??
+  dayMeetRate REAL CHECK (dayMeetRate >= 0), --how much to rent the room for - hourly rate??
+  eveningMeetRate REAL CHECK (eveningMeetRate >= 0)
 );
 
 CREATE TABLE meetRes (

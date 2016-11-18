@@ -41,9 +41,9 @@
 
     echo "<h3>Equipment Info</h3>";
     echo "<table border='1'>";
-    echo "<tr style='font-weight:bold'><td>equipID</td><td>type</td><td>equipRate</td></tr>";
+    echo "<tr style='font-weight:bold'><td>equipID</td><td>type</td><td>equipRate</td><td>notes</td></tr>";
     foreach($result2 as $tuple) {
-      echo "<tr><td>$tuple[equipID]</td><td>$tuple[type]</td><td>$tuple[equipRate]</td></tr>";
+      echo "<tr><td>$tuple[equipID]</td><td>$tuple[type]</td><td>$tuple[equipRate]</td><td>$tuple[notes]</td></tr>";
     }
     echo "</table>";
 
@@ -73,9 +73,9 @@
 
     echo "<h3>Meeting Room Info</h3>";
     echo "<table border='1'>";
-    echo "<tr style='font-weight:bold'><td>roomID</td><td>maxPpl</td><td>meetRate</td></tr>";
+    echo "<tr style='font-weight:bold'><td>roomID</td><td>maxPpl</td><td>dayMeetRate</td><td>eveningMeetRate</td></tr>";
     foreach($result6 as $tuple) {
-      echo "<tr><td>$tuple[roomID]</td><td>$tuple[maxPpl]</td><td>$tuple[meetRate]</td></tr>";
+      echo "<tr><td>$tuple[roomID]</td><td>$tuple[maxPpl]</td><td>$tuple[dayMeetRate]</td><td>$tuple[eveningMeetRate]</td></tr>";
     }
     echo "</table>";
 
