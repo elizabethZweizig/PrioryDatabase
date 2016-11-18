@@ -83,6 +83,8 @@ CREATE TABLE program (
   dateUsed TEXT CHECK(GLOB('????-??-??', dateUsed)),
   timeIn TEXT CHECK(GLOB('??:??', timeIn)),
   timeOut TEXT CHECK(GLOB('??:??', timeOut)),
+  tour INTEGER, -- 1 for true, 0 for false
+  notes TEXT,
   FOREIGN KEY (contact) REFERENCES login(pID) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (roomID) REFERENCES meetRoom(roomID) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY (programName, contact, dateUsed, timeIn)

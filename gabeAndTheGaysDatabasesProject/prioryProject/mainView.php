@@ -70,6 +70,10 @@
       echo "<tr><td>$tuple[pID]</td><td>$tuple[bedID]</td><td>$tuple[numPpl]</td><td>$tuple[checkIn]</td><td>$tuple[checkOut]</td><td>$tuple[timeIn]</td><td>$tuple[timeOut]</td><td>$tuple[dateRecvd]</td></tr>";
     }
     echo "</table>";
+    echo "<h4>Notes:</h4>";
+    echo "<ul>";
+    echo "<li>Maximum of 19 guests in 10 rooms, if guests share rooms</li>";
+    echo "</ul>";
 
     echo "<h3>Meeting Room Info</h3>";
     echo "<table border='1'>";
@@ -78,6 +82,17 @@
       echo "<tr><td>$tuple[roomID]</td><td>$tuple[maxPpl]</td><td>$tuple[dayMeetRate]</td><td>$tuple[eveningMeetRate]</td></tr>";
     }
     echo "</table>";
+    echo "<h4>Notes:</h4>";
+    echo "<ul>";
+    echo "<li>MultiPurpose Rooms arranged lecture style - tables and chairs in
+      each room is comfortable for up to 40 people. MP Rooms 1 and 2 combined
+      accomodates 150 people lecture style and 125 at tables. Groups larger than
+      100 will be charged an extra $1 per person</li>
+      <li>$20 garbage fee for catered meal in Sophia only</li>
+      <li>Guadalupe Room has a coffee table and 6-8 padded chairs</li>
+      <li>Internet access, overhead projector, TV/VCR, and garbage fee for catered
+      meals are all included in the MultiPurpose room cost</li>";
+    echo "</ul>";
 
     echo "<h3>Meeting Room Reservation Info</h3>";
     echo "<table border='1'>";
@@ -89,9 +104,9 @@
 
     echo "<h3>Program Info</h3>";
     echo "<table border='1'>";
-    echo "<tr style='font-weight:bold'><td>programName</td><td>contact</td><td>roomID</td><td>cost</td><td>dateUsed</td><td>timeIn</td><td>timeOut</td></tr>";
+    echo "<tr style='font-weight:bold'><td>programName</td><td>contact</td><td>roomID</td><td>cost</td><td>dateUsed</td><td>timeIn</td><td>timeOut</td><td>tour</td><td>notes</td></tr>";
     foreach($result8 as $tuple) {
-      echo "<tr><td>$tuple[programName]</td><td>$tuple[contact]</td><td>$tuple[roomID]</td><td>$tuple[cost]</td><td>$tuple[dateUsed]</td><td>$tuple[timeIn]</td><td>$tuple[timeOut]</td></tr>";
+      echo "<tr><td>$tuple[programName]</td><td>$tuple[contact]</td><td>$tuple[roomID]</td><td>$tuple[cost]</td><td>$tuple[dateUsed]</td><td>$tuple[timeIn]</td><td>$tuple[timeOut]</td><td>$tuple[tour]</td><td>$tuple[notes]</td></tr>";
     }
     echo "</table>";
 
