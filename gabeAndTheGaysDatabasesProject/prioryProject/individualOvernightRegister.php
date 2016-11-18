@@ -1,46 +1,76 @@
-<--TODO: fix all the things to be for indivreg-->
+<!--TODO: fix all the things to be for indivreg-->
 
 <?php
-        if (empty($_POST['f_name']))
+        if (empty($_POST['contact']))
         {
-                //send back
-                header('Location: '.$project2.html);
+                //send back to sign in page
+                header('Location: '.signin.html);
                 die();
         }
 
-        if (empty($_POST['m_name']))
+        if (empty($_POST['numPpl']))
         {
                 //send back
-                header('Location: '.$project2.html);
+                header('Location: '.$individualOvernightRegistration.php);
                 die();
         }
-        if (empty($_POST['l_name']))
+        if (empty($_POST['checkInDate']))
         {
                 //send back
-                header('Location: '.$project2.html);
+                header('Location: '.$individualOvernightRegistration.php);
                 die();
         }
-        if (empty($_POST['ssn']))
+        if (empty($_POST['checkOutDate']))
         {
                 //send back
-                header('Location: '.$project2.html);
+                header('Location: '.$individualOvernightRegistration.php);
+                die();
+        }
+        if (empty($_POST['checkInTime']))
+        {
+                //send back
+                header('Location: '.$individualOvernightRegistration.php);
+                die();
+        }
+        if (empty($_POST['checkOutTime']))
+        {
+                //send back
+                header('Location: '.$individualOvernightRegistration.php);
+                die();
+        }
+        if (empty($_POST['dateRecvd']))
+        {
+                //send back
+                header('Location: '.$individualOvernightRegistration.php);
+                die();
+        }
+        if (empty($_POST['tour']))
+        {
+                //send back
+                header('Location: '.$individualOvernightRegistration.php);
                 die();
         }
         else {
                 try
             {
                 //open the sqlite database file
-                $db = new PDO('sqlite:./database/airport.db');
+                $db = new PDO('sqlite:./database/priorydb.db');
 
                 // Set errormode to exceptions
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
                 // sets vars = POST variables
-                $firstname = $_POST['f_name'];
-                $midname = $_POST['m_name'];
-                $lastname = $_POST['l_name'];
-                $socialsec = $_POST['ssn'];
+                $contact = $_POST['contact'];
+                $numPpl = $_POST['numPpl'];
+                $checkInDate = $_POST['checkInDate'];
+                $checkOutDate = $_POST['checkOutDate'];
+                $checkInTime = $_POST['checkInTime'];
+                $checkOutTime = $_POST['checkOutTime'];
+                $dateRecvd = $_POST['dateRecvd'];
+                $tour = $_POST['tour'];
+
+
 
                 // prepares the sql statement
 								$sqlStatement = $db->prepare("insert into passengers (f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");

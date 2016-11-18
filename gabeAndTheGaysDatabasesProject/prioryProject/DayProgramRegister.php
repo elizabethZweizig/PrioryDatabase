@@ -1,4 +1,4 @@
-<--TODO: fix all the things to be for program reg-->
+<!--TODO: fix all the things to be for program reg-->
 
 <?php
         if (empty($_POST['f_name']))
