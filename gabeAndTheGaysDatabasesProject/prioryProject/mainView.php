@@ -12,14 +12,22 @@
     //select * from all tables
     // need to add one more table for all reservations
     $login = "SELECT * FROM login";
+    $atPriory = "SELECT * FROM atPriory";
     $equip = "SELECT * FROM equipment";
     $equipRes = "SELECT * FROM equipRes";
     $bedroom = "SELECT * FROM bedroom";
     $bedRes = "SELECT * FROM bedRes";
     $meetRoom = "SELECT * FROM meetRoom";
     $meetRes = "SELECT * FROM meetRes";
-    $program = "SELECT * FROM program";
-    $programRoster = "SELECT * FROM programRoster";
+    $groupInfo = "SELECT * FROM groupInfo";
+    $dayVisit = "SELECT * FROM dayVisit";
+    $nightVisit = "SELECT * FROM nightVisit";
+    $groupRooms = "SELECT * FROM groupRooms";
+    $prioryEvent = "SELECT * FROM prioryEvent";
+    $eventRoom = "SELECT * FROM eventRoom";
+    $eventRoster = "SELECT * FROM eventRoster";
+    $groupOvernight = "SELECT * FROM groupOvernight";
+    $overnightBeds = "SELECT * FROM overnightBeds";
 
     // run all queries
     // $result = $db->query($reservations);
@@ -30,13 +38,48 @@
     $result5 = $db->query($bedRes);
     $result6 = $db->query($meetRoom);
     $result7 = $db->query($meetRes);
-    $result8 = $db->query($program);
-    $result9 = $db->query($programRoster);
+    $result8 = $db->query($atPriory);
+    $result9 = $db->query($groupInfo);
+    $result10 = $db->query($dayVisit);
+    $result11 = $db->query($nightVisit);
+    $result12 = $db->query($groupRooms);
+    $result13 = $db->query($prioryEvent);
+    $result14 = $db->query($eventRoom);
+    $result15 = $db->query($eventRoster);
+    $result16 = $db->query($groupOvernight);
+    $result17 = $db->query($overnightBeds);
 
     echo "<h3>Login Info</h3>";
     echo "<table border='1'>";
     $i = 0;
     foreach ($result1 as $tuple)
+    {
+            if ($i == "0") {
+                    echo "<tr style='font-weight:bold'>";
+                    foreach ($tuple as $key => $value)
+                    {
+                            echo "<td>";
+                            print_r($key);
+                            echo "</td>";
+                    }
+                    echo "</tr>";
+            }
+            echo "<tr>";
+            foreach ($tuple as $key => $value)
+            {
+                    echo "<td>";
+                    print_r($value);
+                    echo "</td>";
+            }
+            echo "</tr>";
+            $i++;
+    }
+    echo "</table>";
+
+    echo "<h3>atPriory Info</h3>";
+    echo "<table border='1'>";
+    $i = 0;
+    foreach ($result8 as $tuple)
     {
             if ($i == "0") {
                     echo "<tr style='font-weight:bold'>";
@@ -237,10 +280,10 @@
     }
     echo "</table>";
 
-    echo "<h3>Program Info</h3>";
+    echo "<h3>Group Info</h3>";
     echo "<table border='1'>";
     $i = 0;
-    foreach ($result8 as $tuple)
+    foreach ($result9 as $tuple)
     {
             if ($i == "0") {
                     echo "<tr style='font-weight:bold'>";
@@ -264,10 +307,199 @@
     }
     echo "</table>";
 
-    echo "<h3>Program Roster Info</h3>";
+    echo "<h3>Day Visit Info</h3>";
     echo "<table border='1'>";
     $i = 0;
-    foreach ($result9 as $tuple)
+    foreach ($result10 as $tuple)
+    {
+            if ($i == "0") {
+                    echo "<tr style='font-weight:bold'>";
+                    foreach ($tuple as $key => $value)
+                    {
+                            echo "<td>";
+                            print_r($key);
+                            echo "</td>";
+                    }
+                    echo "</tr>";
+            }
+            echo "<tr>";
+            foreach ($tuple as $key => $value)
+            {
+                    echo "<td>";
+                    print_r($value);
+                    echo "</td>";
+            }
+            echo "</tr>";
+            $i++;
+    }
+    echo "</table>";
+
+    echo "<h3>Night Visit Info</h3>";
+    echo "<table border='1'>";
+    $i = 0;
+    foreach ($result11 as $tuple)
+    {
+            if ($i == "0") {
+                    echo "<tr style='font-weight:bold'>";
+                    foreach ($tuple as $key => $value)
+                    {
+                            echo "<td>";
+                            print_r($key);
+                            echo "</td>";
+                    }
+                    echo "</tr>";
+            }
+            echo "<tr>";
+            foreach ($tuple as $key => $value)
+            {
+                    echo "<td>";
+                    print_r($value);
+                    echo "</td>";
+            }
+            echo "</tr>";
+            $i++;
+    }
+    echo "</table>";
+
+    echo "<h3>Group Rooms Info</h3>";
+    echo "<table border='1'>";
+    $i = 0;
+    foreach ($result12 as $tuple)
+    {
+            if ($i == "0") {
+                    echo "<tr style='font-weight:bold'>";
+                    foreach ($tuple as $key => $value)
+                    {
+                            echo "<td>";
+                            print_r($key);
+                            echo "</td>";
+                    }
+                    echo "</tr>";
+            }
+            echo "<tr>";
+            foreach ($tuple as $key => $value)
+            {
+                    echo "<td>";
+                    print_r($value);
+                    echo "</td>";
+            }
+            echo "</tr>";
+            $i++;
+    }
+    echo "</table>";
+
+    echo "<h3>Priory Event Info</h3>";
+    echo "<table border='1'>";
+    $i = 0;
+    foreach ($result13 as $tuple)
+    {
+            if ($i == "0") {
+                    echo "<tr style='font-weight:bold'>";
+                    foreach ($tuple as $key => $value)
+                    {
+                            echo "<td>";
+                            print_r($key);
+                            echo "</td>";
+                    }
+                    echo "</tr>";
+            }
+            echo "<tr>";
+            foreach ($tuple as $key => $value)
+            {
+                    echo "<td>";
+                    print_r($value);
+                    echo "</td>";
+            }
+            echo "</tr>";
+            $i++;
+    }
+    echo "</table>";
+
+    echo "<h3>Event Room Info</h3>";
+    echo "<table border='1'>";
+    $i = 0;
+    foreach ($result14 as $tuple)
+    {
+            if ($i == "0") {
+                    echo "<tr style='font-weight:bold'>";
+                    foreach ($tuple as $key => $value)
+                    {
+                            echo "<td>";
+                            print_r($key);
+                            echo "</td>";
+                    }
+                    echo "</tr>";
+            }
+            echo "<tr>";
+            foreach ($tuple as $key => $value)
+            {
+                    echo "<td>";
+                    print_r($value);
+                    echo "</td>";
+            }
+            echo "</tr>";
+            $i++;
+    }
+    echo "</table>";
+
+    echo "<h3>Event Roster Info</h3>";
+    echo "<table border='1'>";
+    $i = 0;
+    foreach ($result15 as $tuple)
+    {
+            if ($i == "0") {
+                    echo "<tr style='font-weight:bold'>";
+                    foreach ($tuple as $key => $value)
+                    {
+                            echo "<td>";
+                            print_r($key);
+                            echo "</td>";
+                    }
+                    echo "</tr>";
+            }
+            echo "<tr>";
+            foreach ($tuple as $key => $value)
+            {
+                    echo "<td>";
+                    print_r($value);
+                    echo "</td>";
+            }
+            echo "</tr>";
+            $i++;
+    }
+    echo "</table>";
+
+    echo "<h3>Group Overnight Info</h3>";
+    echo "<table border='1'>";
+    $i = 0;
+    foreach ($result16 as $tuple)
+    {
+            if ($i == "0") {
+                    echo "<tr style='font-weight:bold'>";
+                    foreach ($tuple as $key => $value)
+                    {
+                            echo "<td>";
+                            print_r($key);
+                            echo "</td>";
+                    }
+                    echo "</tr>";
+            }
+            echo "<tr>";
+            foreach ($tuple as $key => $value)
+            {
+                    echo "<td>";
+                    print_r($value);
+                    echo "</td>";
+            }
+            echo "</tr>";
+            $i++;
+    }
+    echo "</table>";
+
+    echo "<h3>Overnight Beds Info</h3>";
+    echo "<table border='1'>";
+    $i = 0;
+    foreach ($result17 as $tuple)
     {
             if ($i == "0") {
                     echo "<tr style='font-weight:bold'>";
