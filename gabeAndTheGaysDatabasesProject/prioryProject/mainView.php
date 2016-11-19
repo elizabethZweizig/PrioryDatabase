@@ -12,7 +12,6 @@
     //select * from all tables
     // need to add one more table for all reservations
     $login = "SELECT * FROM login";
-    $atPriory = "SELECT * FROM atPriory";
     $equip = "SELECT * FROM equipment";
     $equipRes = "SELECT * FROM equipRes";
     $bedroom = "SELECT * FROM bedroom";
@@ -38,7 +37,6 @@
     $result5 = $db->query($bedRes);
     $result6 = $db->query($meetRoom);
     $result7 = $db->query($meetRes);
-    $result8 = $db->query($atPriory);
     $result9 = $db->query($groupInfo);
     $result10 = $db->query($dayVisit);
     $result11 = $db->query($nightVisit);
@@ -53,33 +51,6 @@
     echo "<table border='1'>";
     $i = 0;
     foreach ($result1 as $tuple)
-    {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
-    }
-    echo "</table>";
-
-    echo "<h3>atPriory Info</h3>";
-    echo "<table border='1'>";
-    $i = 0;
-    foreach ($result8 as $tuple)
     {
             if ($i == "0") {
                     echo "<tr style='font-weight:bold'>";

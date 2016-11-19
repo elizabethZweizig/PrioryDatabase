@@ -15,17 +15,6 @@ CREATE TABLE login (
   admin INTEGER   -- 1 if true, 0 if false
 );
 
-CREATE TABLE atPriory (
-  pID INTEGER,
-  checkIn TEXT CHECK(GLOB('????-??-??', checkIn)),
-  checkOut TEXT CHECK(GLOB('????-??-??', checkOut)),
-  timeIn TEXT CHECK(GLOB('??:??', timeIn)),
-  timeOut TEXT CHECK(GLOB('??:??', timeOut)),
-  dateRecvd TEXT CHECK(GLOB('????-??-??', dateRecvd)),
-  FOREIGN KEY (pID) REFERENCES login(pID) ON DELETE CASCADE ON UPDATE CASCADE,
-  PRIMARY KEY (pID, checkIn)
-);
-
 CREATE TABLE equipment (
   equipID INTEGER PRIMARY KEY,
   type TEXT, --what the thing is
