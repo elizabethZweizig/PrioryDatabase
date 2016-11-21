@@ -10,8 +10,8 @@ CREATE TABLE login (
   address TEXT,
   email TEXT NOT NULL,
   cellNo TEXT CHECK (length(cellNo) == 10), --format needed
+  username TEXT,
   pwd TEXT, --password
-  extraNeeds TEXT,
   admin INTEGER   -- 1 if true, 0 if false
 );
 
