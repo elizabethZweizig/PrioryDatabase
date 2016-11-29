@@ -64,8 +64,9 @@ else {
 
     // prepares the sql statement
     //$sqlStatement = $db->prepare("insert into login (pID, f_name, l_name, address, em$
-    $sqlStatement = $db->prepare("insert into login (pID, f_name, l_name, address, emai$
+    $sqlStatement = $db->prepare("insert into login (pID, f_name, l_name, address, email, cellNo, username, pwd, admin) values (:pID, :f_name, :l_name, :address, :email, :cellNo, :username, :pwd, :admin); ");
     // binds parameters to be used in sql statement
+
     $sqlStatement->bindParam(':pID', $nullPID);
     $sqlStatement->bindParam(':f_name', $fname);
     $sqlStatement->bindParam(':l_name', $lname);
@@ -81,9 +82,9 @@ else {
   }
   catch(PDOException $e)
   {
-    die('Exception : '.$e->getMessage());
+      die('Exception : '.$e->getMessage());
   }
 }
-// sends to success page if no exception thrown
-header('Location: '.$success.html);
+// sends to success page
+header('Location: success.html');
 ?>
