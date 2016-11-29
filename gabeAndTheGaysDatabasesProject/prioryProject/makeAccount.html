@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <head>
+    <title>Make New Account</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <!--posts to passengers table in airport database-->
+    <h4>Make a New Account:</h4>
+    <form action="login.php" method="post">
+
+      <!-- pID attr not entered by user - set null in insert-->
+
+      First Name<font color="red">*</font>:
+      <input type="text" name="f_name" required/></br>
+
+      Last Name<font color="red">*</font>:
+      <input type="text" name="l_name" required/></br>
+
+      Home or Business Address<font color="red">*</font>:
+      <input type="text" name="address" required/></br>
+
+      Email<font color="red">*</font>:
+      <input type="text" name="email" required/></br>
+
+      Cell or Business Phone Number<font color="red">*</font>:
+      <input type="text" name="cellNo" required/></br>
+
+      Create Username<font color="red">*</font>:
+      <input type="text" name="username" required/></br>
+
+      Create Password<font color="red">*</font>:
+      <input type="text" name="pwd" required/></br>
+
+      <!-- admin attr set by DBA - assumed 0 -->
+
+      <!--submitting form and required explain-->
+      <input type="submit"/> <h6 style="color:red">*required</h6>
+    </form>
+  </body>
