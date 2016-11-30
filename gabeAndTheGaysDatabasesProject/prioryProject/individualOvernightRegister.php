@@ -124,7 +124,8 @@ else {
         $sqlDay->execute();
       }
 
-      //TODO: notify admin of need to schedule beds. include bedResID
+      //TODO: notify admin of need to schedule beds. include bedResID and priorydb
+      //all new bedres should be tied to pID
     }
     catch(PDOException $e)
     {
