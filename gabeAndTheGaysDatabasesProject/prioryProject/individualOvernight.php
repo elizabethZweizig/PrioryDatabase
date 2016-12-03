@@ -30,7 +30,7 @@
       <!--Check out time, required, time-->
       <input type="time" name="timeOut" required/></br>
 
-      <!--TODO: date the res was made-->
+      <!--date reserve was made-->
       <script>
       var today = Date.now();
       </script>

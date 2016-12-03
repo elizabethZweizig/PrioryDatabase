@@ -113,7 +113,10 @@ else {
       for ($i = $checkIn.getTime(); i<=$checkOut.getTime(); $i+=$oneDay){
         $sqlNight = $db->prepare('insert into nightVisit values (:person, :day, :bedResID);');
         $sqlNight->bindParam(':person', $person);
-        $sqlNight->bindParam(':checkIn', $i); //TODO: fix wrong format
+        $hours = $i % 3.6e6;
+        $minutes = ($i - ($hours * 3.6e6))% 60000;
+        $time = "".$hours.":".$minutes."";
+        $sqlNight->bindParam(':checkIn', $time); 
         $sqlNight->bindParam(':bedResID', $bedResID);
         $sqlNight->execute();
 
