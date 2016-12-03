@@ -69,21 +69,15 @@ else {
     $timeOut = $_POST['timeOut'];
     $dateRecvd = $_POST['dateRecvd'];
     $tour = $_POST['tour'];
+    $nullBedResID = NULL;
+    $nullBedID = NULL;
 
     //prepares first sql (bedRes)
     $sqlStatement = $db->prepare(
-      "insert into bedRes (
-        bedResID,
-        bedId,
-        numPpl,
-        checkIn,
-        checkOut,
-        timeIn,
-        timeOut,
-        dateRecvd)
+      "insert into bedRes
         values (
-          NULL,
-          NULL,
+          :BedResID,
+          :bedID,
           :numPpl,
           :checkIn,
           :checkOut,
@@ -103,6 +97,8 @@ else {
       $sqlStatement->bindParam(':timeIn', $timeIn);
       $sqlStatement->bindParam(':timeOut', $timeOut);
       $sqlStatement->bindParam(':dateRecvd', $dateRecvd);
+      $sqlStatement->bindParam(':BedResID', $BedResID);
+      $sqlStatement->bindParam(':bedID', $bedID);
       //executes statement
       $sqlStatement->execute();
       //$db->exec("insert into passengers values ('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
@@ -124,8 +120,10 @@ else {
         $sqlDay->execute();
       }
 
-      //TODO: notify admin of need to schedule beds. include bedResID and priorydb
+      //TODO: notify admin of need to schedule beds. include bedResID and pID
       //all new bedres should be tied to pID
+      $to = NULL; //email of priory admin who sets up beds
+      mail($to, "New Overnight Guest", "There is an individual wanting to overnight at the Priory from ".$checkIn." to ".$checkOut". Their current reservation has a BedResID of ".$BedResID."and their pID is ".$person.".");
     }
     catch(PDOException $e)
     {
