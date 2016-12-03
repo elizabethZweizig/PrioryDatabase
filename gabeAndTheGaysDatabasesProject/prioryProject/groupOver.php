@@ -89,7 +89,7 @@ else {
       //executes statement
       $sqlStatement->execute();
       //$db->exec("insert into passengers values ('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
-      $sqlGetGroupID = $db->prepare('select groupID from groupInfo where contact == :person, groupName == :groupName;');
+      $sqlGetGroupID = $db->prepare('select groupID from groupInfo where contactPerson == :person and groupName == :groupName;');
       $sqlGetGroupID->bindParam(':person', $person);
       $sqlGetGroupID->bindParam(':groupName', $groupName);
       $groupID = $sqlGetGroupID->execute();
@@ -121,7 +121,7 @@ else {
         //executes statement
         $sqlStatement->execute();
 
-        $sqlBedres = $db->prepare('select bedResID from bedRes where checkIn == :checkIn, checkOut == :checkOut, dateRecvd == :dateRecvd;');
+        $sqlBedres = $db->prepare('select bedResID from bedRes where checkIn == :checkIn and checkOut == :checkOut and dateRecvd == :dateRecvd;');
         $sqlBedres->bindParam(':checkIn', $checkIn);
         $sqlBedres->bindParam(':checkOut', $checkOut);
         $sqlBedres->bindParam(':dateRecvd', $dateRecvd);
