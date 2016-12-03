@@ -1,11 +1,11 @@
+<?php
+  require("userlogedin.php");
+?>
 <!DOCTYPE html>
   <head>
   <title>Group Overnight Registrations</title>
   </head>
   <body>
-    <?php
-      require 'userlogedin.php';
-    ?>
     <h4>Overnight Reservations:</h4>
     <form action="groupOver.php" method="post">
       <!--goes to nightVisit, dayVisit, and bedResID-->

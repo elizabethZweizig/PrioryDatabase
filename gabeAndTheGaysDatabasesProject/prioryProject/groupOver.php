@@ -144,8 +144,8 @@ else {
 
       //TODO: notify admin of need to schedule beds for all people. include bedResID and overnightID
       //all new bed res should be tied to overnight id
-      $to = NULL; //email of priory admin who sets up beds
-      mail($to, "New Overnight Guests", "There is a group of ".$numPpl." wanting to overnight at the Priory from ".$checkIn." to ".$checkOut". Their current reservation has a BedResID of ".$BedResID."and an overnightID of ".$overnightID.".");
+      //$to = NULL; //email of priory admin who sets up beds
+      //mail($to, "New Overnight Guests", "There is a group of ".$numPpl." wanting to overnight at the Priory from ".$checkIn." to ".$checkOut". Their current reservation has a BedResID of ".$BedResID."and an overnightID of ".$overnightID.".");
     }
     catch(PDOException $e)
     {
