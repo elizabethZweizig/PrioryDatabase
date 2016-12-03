@@ -17,14 +17,18 @@ $db = new PDO('sqlite:./database/priorydb.db');
 // Set errormode to exceptions
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$user = "\"".$_POST["username"]."\"";
-$password = "\"".$_POST["pwd"]."\"";
+$user = $_POST['username'];
+$user = stripslashes($user);
 
-$login = "SELECT * FROM login WHERE username == $user AND pwd == $password";
+$password = $_POST['pwd'];
+$password = stripslashes($password);
+
+$login = "SELECT * FROM login WHERE username == '$user' AND pwd == '$password'";
 
 $result = $db->query($login);
+$count = count($result->fetchAll());
 
-if (!empty($result)){    // if no results - i.e. this username/password combo not in db
+if ($count == 1) {
   setCookie("login", $_POST['pID'], time() + 3600);       // expires after an hour
   $_COOKIE["login"];
 
