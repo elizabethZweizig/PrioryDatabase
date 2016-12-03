@@ -23,9 +23,11 @@
       <input type="date" name="endDate" required/></br>
 
       <!--program name-->
+      Group Name<font color="red">*</font>:
       <input type="text" name="name" required/></br>
 
       <!--program description-->
+      Description:
       <input type="text" name="description"/></br>
 
       <!--submitting form and required explain-->
