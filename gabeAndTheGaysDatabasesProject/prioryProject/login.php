@@ -79,6 +79,10 @@ else {
 
     //executes statement
     $sqlStatement->execute();
+
+    // set login cookie
+    setCookie("login", $_POST['pID'], time() + 3600);       // expires after an hour
+    $_COOKIE["login"];
   }
   catch(PDOException $e)
   {
