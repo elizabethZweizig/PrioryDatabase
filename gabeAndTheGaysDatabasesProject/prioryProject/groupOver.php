@@ -89,8 +89,10 @@ else {
       //executes statement
       $sqlStatement->execute();
       //$db->exec("insert into passengers values ('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
-
-      $groupID = 0; //TODO: Rachel help get groupID of tuple just created
+      $sqlGetGroupID = $db->prepare('select groupID from groupInfo where contact == :person, groupName == :groupName;');
+      $sqlGetGroupID->bindParam(':person', $person);
+      $sqlGetGroupID->bindParam(':groupName', $groupName);
+      $groupID = $sqlGetGroupID->execute();
 
       $sqlStatement = $db->prepare(
         "insert into bedRes
@@ -119,17 +121,26 @@ else {
         //executes statement
         $sqlStatement->execute();
 
-        $bedResID = 0; //TODO: Rachel help get bedResID of tuple just created
+        $sqlBedres = $db->prepare('select bedResID from bedRes where checkIn == :checkIn, checkOut == :checkOut, dateRecvd == :dateRecvd;');
+        $sqlBedres->bindParam(':checkIn', $checkIn);
+        $sqlBedres->bindParam(':checkOut', $checkOut);
+        $sqlBedres->bindParam(':dateRecvd', $dateRecvd);
+        $bedResID = $sqlBedres->execute();
         $nullovernightID = NULL;
+
         $sqlOB = $db->prepare('insert into overnightBeds values (:overnightID, :bedResID);');
-        $sqlStatement->bindParam(':bedResID', $bedResID);
-        $sqlStatement->bindParam(':overnightID', $nullovernightID);
+        $sqlOB->bindParam(':bedResID', $bedResID);
+        $sqlOB->bindParam(':overnightID', $nullovernightID);
+        $sqlOB->execute();
 
-        $overnightID = 0; //TODO: Rachel help get overnightID of tuple just created
+        $sqlover = $db->prepare('select overnightID from overnightBeds where bedResID == :bedResID;');
+        $sqlover->bindParam(':bedResID', $bedResID);
+        $overnightID = $sqlover->execute();
 
-        $sqlOB = $db->prepare('insert into overnightBeds values (:overnightID, :groupID);');
-        $sqlStatement->bindParam(':groupID', $groupID);
-        $sqlStatement->bindParam(':overnightID', $overnightID);
+        $sqlGO = $db->prepare('insert into groupOvernight values (:overnightID, :groupID);');
+        $sqlGO->bindParam(':bedResID', $bedResID);
+        $sqlGO->bindParam(':overnightID', $overnightID);
+        $sqlGO->execute();
 
       //TODO: notify admin of need to schedule beds for all people. include bedResID and overnightID
       //all new bed res should be tied to overnight id

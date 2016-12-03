@@ -101,7 +101,11 @@ else {
       $sqlStatement->execute();
       //$db->exec("insert into passengers values ('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
 
-      $bedResID = 0; //TODO: Rachel help get bedResID of tuple just created
+      $sqlBedres = $db->prepare('select bedResID from bedRes where checkIn == :checkIn, checkOut == :checkOut, dateRecvd == :dateRecvd;');
+      $sqlBedres->bindParam(':checkIn', $checkIn);
+      $sqlBedres->bindParam(':checkOut', $checkOut);
+      $sqlBedres->bindParam(':dateRecvd', $dateRecvd);
+      $bedResID = $sqlBedres->execute();
 
       //for every day being stayed
       $oneDay = 8.64e7;
