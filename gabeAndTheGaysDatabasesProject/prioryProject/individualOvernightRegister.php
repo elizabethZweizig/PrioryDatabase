@@ -1,5 +1,3 @@
-<!--TODO: fix all the things to be for indivreg-->
-
 <?php
 if (empty($_POST['person']))
 {

@@ -1,5 +1,3 @@
-<!--TODO: fix all the things to be for group overnightBeds-->
-
 <?php
 
 if (empty($_POST['person']))
@@ -86,6 +84,8 @@ else {
       $sqlStatement->bindParam(':groupNeeds', $groupNeeds);
       $sqlStatement->bindParam(':tour', $tour);
       $sqlStatement->bindParam(':groupID', $nullGroupID);
+      $nullBedResID = NULL;
+      $nullBedID = NULL;
       //executes statement
       $sqlStatement->execute();
       //$db->exec("insert into passengers values ('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
@@ -93,18 +93,10 @@ else {
       $groupID = 0; //TODO: Rachel help get groupID of tuple just created
 
       $sqlStatement = $db->prepare(
-        "insert into bedRes (
-          bedResID,
-          bedId,
-          numPpl,
-          checkIn,
-          checkOut,
-          timeIn,
-          timeOut,
-          dateRecvd)
+        "insert into bedRes
           values (
-            NULL,
-            NULL,
+            :BedResID,
+            :bedID,
             :numPpl,
             :checkIn,
             :checkOut,
@@ -128,9 +120,10 @@ else {
         $sqlStatement->execute();
 
         $bedResID = 0; //TODO: Rachel help get bedResID of tuple just created
-
-        $sqlOB = $db->prepare('insert into overnightBeds values (NULL, :bedResID);');
+        $nullovernightID = NULL;
+        $sqlOB = $db->prepare('insert into overnightBeds values (:overnightID, :bedResID);');
         $sqlStatement->bindParam(':bedResID', $bedResID);
+        $sqlStatement->bindParam(':overnightID', $nullovernightID);
 
         $overnightID = 0; //TODO: Rachel help get overnightID of tuple just created
 
