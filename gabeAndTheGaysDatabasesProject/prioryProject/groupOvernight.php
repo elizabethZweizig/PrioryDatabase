@@ -1,21 +1,30 @@
 <!DOCTYPE html>
   <head>
-  <title>Individual Overnight Registrations</title>
+  <title>Group Overnight Registrations</title>
   </head>
   <body>
     <?php
       require 'userlogedin.php';
     ?>
-    <h4>Overnight Reservation:</h4>
-    <form action="individualOvernightRegister.php" method="post">
+    <h4>Overnight Reservations:</h4>
+    <form action="groupOver.php" method="post">
       <!--goes to nightVisit, dayVisit, and bedResID-->
 
       <!--contact person, hidden, gotten from page value?-->
       <!--TODO: getting of pID from sign in (page only accessible if has account)-->
       <input type="hidden" name="person" value="$_COOKIE['login']"/>
 
-      <!--numPpl for indiv is 1-->
-      <input type="hidden" name="numPpl" value="1"/>
+      <!--name of group-->
+      What is your group's name?
+      <input type="text" name="groupName"/></br>
+
+      <!--any special needs-->
+      Does your group have any special needs we should be aware of?
+      <input type="text" name="groupNeeds"/></br>
+
+      <!--numPpl greater than or equal to 1-->
+      How many people will be joining us?
+      <input type="number" name="numPpl" min="1"/><br>
 
       <!--Check in date, required, date-->
       Check in<font color="red">*</font>:

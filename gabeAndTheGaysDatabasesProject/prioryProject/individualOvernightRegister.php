@@ -4,50 +4,50 @@
 if (empty($_POST['person']))
 {
   //send back to sign in page
-  header('Location: '.signin.html);
+  header('Location: '.$signin.html);
   die();
 }
 
 if (empty($_POST['numPpl']))
 {
   //send back
-  header('Location: '.$individualOvernightRegistration.php);
+  header('Location: '.$individualOvernight.php);
   die();
 }
 if (empty($_POST['checkIn']))
 {
   //send back
-  header('Location: '.$individualOvernightRegistration.php);
+  header('Location: '.$individualOvernight.php);
   die();
 }
 if (empty($_POST['checkOut']))
 {
   //send back
-  header('Location: '.$individualOvernightRegistration.php);
+  header('Location: '.$individualOvernight.php);
   die();
 }
 if (empty($_POST['timeIn']))
 {
   //send back
-  header('Location: '.$individualOvernightRegistration.php);
+  header('Location: '.$individualOvernight.php);
   die();
 }
 if (empty($_POST['timeOut']))
 {
   //send back
-  header('Location: '.$individualOvernightRegistration.php);
+  header('Location: '.$individualOvernight.php);
   die();
 }
 if (empty($_POST['dateRecvd']))
 {
   //send back
-  header('Location: '.$individualOvernightRegistration.php);
+  header('Location: '.$individualOvernight.php);
   die();
 }
 if (empty($_POST['tour']))
 {
   //send back
-  header('Location: '.$individualOvernightRegistration.php);
+  header('Location: '.$individualOvernight.php);
   die();
 }
 else {
