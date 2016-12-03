@@ -11,7 +11,6 @@
       <!--goes to nightVisit, dayVisit, and bedResID-->
 
       <!--contact person, hidden, gotten from page value?-->
-      <!--TODO: getting of pID from sign in (page only accessible if has account)-->
       <input type="hidden" name="person" value="$_COOKIE['login']"/>
 
       <!--name of group-->
