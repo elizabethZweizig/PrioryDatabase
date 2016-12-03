@@ -29,12 +29,14 @@ $result = $db->query($login);
 $count = count($result->fetchAll());
 
 if ($count == 1) {
-  setCookie("login", $_POST['pID'], time() + 3600);       // expires after an hour
+  setCookie("login", $_POST['username'], time() + 3600);       // expires after an hour
   $_COOKIE["login"];
 
-  header('Location: success.html');
+  //echo "SUCCESS";
+  header('Location: successfulLogin.php');
 }
 else {
+  //echo "CATASTROPHIC FAILURE";
   header('Location: signin.html');
   die();
 }
