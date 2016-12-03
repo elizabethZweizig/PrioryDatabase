@@ -3,9 +3,7 @@
   <title>Priory Program Setup</title>
   </head>
   <body>
-    <?php
-      require 'adminloggedin.php';
-    ?>
+    <!--TODO: admin require-->
     <h4>Program Setup:</h4>
     <form action="prioryEvent.php" method="post">
       <!--prioryEvent (
