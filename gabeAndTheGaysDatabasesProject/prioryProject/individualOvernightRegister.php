@@ -68,7 +68,7 @@ else {
     $dateRecvd = $_POST['dateRecvd'];
     $tour = $_POST['tour'];
     $nullBedResID = NULL;
-    $nullBedID = NULL;
+    $nullBedID = 0; //doesn't accept zeroes
 
     //prepares first sql (bedRes)
     $sqlStatement = $db->prepare(
@@ -116,7 +116,7 @@ else {
         $hours = $i % 3.6e6;
         $minutes = ($i - ($hours * 3.6e6))% 60000;
         $time = "".$hours.":".$minutes."";
-        $sqlNight->bindParam(':checkIn', $time); 
+        $sqlNight->bindParam(':checkIn', $time);
         $sqlNight->bindParam(':bedResID', $bedResID);
         $sqlNight->execute();
 
