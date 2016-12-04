@@ -20,25 +20,11 @@
       Does your group have any special needs we should be aware of?
       <input type="text" name="groupNeeds"/></br>
 
-      <!--numPpl greater than or equal to 1-->
-      How many people will be joining us?
-      <input type="number" name="numPpl" min="1"/><br>
+      <!--overnight?-->
+      Will any of your group be staying overnight?
+      <input type="radio" name="overnight" value="true"> Yes</br>
+      <input type="radio" name="overnight" value="false" checked> No</br>
 
-      <!--Check in date, required, date-->
-      Check in<font color="red">*</font>:
-      <input type="date" name="checkIn" required/>
-
-      <!--Check in time, required, time-->
-      <input type="time" name="timeIn" required/></br>
-
-      <!--Check out date, required, date-->
-      Check out<font color="red">*</font>:
-      <input type="date" name="checkOut" required/>
-
-      <!--Check out time, required, time-->
-      <input type="time" name="timeOut" required/></br>
-
-      <!--TODO: date the res was made-->
       <script>
       var today = Date.now();
       </script>

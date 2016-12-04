@@ -26,9 +26,9 @@ CREATE TABLE equipRes (
   equipResID INTEGER PRIMARY KEY,
   roomReq INTEGER,  -- 1 if room is required
   equipID INTEGER,
-  dateUsed TEXT CHECK(GLOB('????-??-??', dateUsed)),
-  timeIn TEXT CHECK(GLOB('??:??', timeIn)),
-  timeOut TEXT CHECK(GLOB('??:??', timeOut)),
+  dateUsed TEXT,
+  timeIn TEXT,
+  timeOut TEXT,
   FOREIGN KEY (equipID) REFERENCES equipment(equipID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -43,11 +43,11 @@ CREATE TABLE bedRes (
   bedID TEXT,
   numPpl INTEGER CHECK (numPpl >= 0),
   --  CHECK (bedRes(numPpl) <= bedroom(maxPpl)), -- check numppl is less than max in room - do this in html??
-  checkIn TEXT CHECK(GLOB('????-??-??', checkIn)),
-  checkOut TEXT CHECK(GLOB('????-??-??', checkOut)),
-  timeIn TEXT CHECK(GLOB('??:??', timeIn)),
-  timeOut TEXT CHECK(GLOB('??:??', timeOut)),
-  dateRecvd TEXT CHECK(GLOB('????-??-??', dateRecvd)),
+  checkIn TEXT,
+  checkOut TEXT,
+  timeIn TEXT,
+  timeOut TEXT,
+  dateRecvd TEXT,
   FOREIGN KEY (bedID) REFERENCES bedroom(bedID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -63,10 +63,10 @@ CREATE TABLE meetRes (
   roomID TEXT,
   numPpl INTEGER CHECK (numPpl >= 0),
   -- CHECK(meetRes(numPpl) <= meetRoom(maxPpl)), --check peple thing
-  dateUsed TEXT CHECK(GLOB('????-??-??', dateUsed)),
-  timeIn TEXT CHECK(GLOB('??:??', timeIn)),
-  timeOut TEXT CHECK(GLOB('??:??', timeOut)),
-  dateRecvd TEXT CHECK(GLOB('????-??-??', dateRecvd)),
+  dateUsed TEXT,
+  timeIn TEXT,
+  timeOut TEXT,
+  dateRecvd TEXT,
   FOREIGN KEY (roomID) REFERENCES meetRoom(roomID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -81,7 +81,7 @@ CREATE TABLE groupInfo (
 
 CREATE TABLE dayVisit (
   pID INTEGER,
-  day TEXT CHECK(GLOB('????-??-??', day)),
+  day TEXT,
   tour INTEGER,
   FOREIGN KEY (pID) REFERENCES login(pID) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY (pID, day)
@@ -89,7 +89,7 @@ CREATE TABLE dayVisit (
 
 CREATE TABLE nightVisit (
   pID INTEGER,
-  day TEXT CHECK(GLOB('????-??-??', day)),
+  day TEXT,
   bedResID INTEGER,
   FOREIGN KEY (bedResID) REFERENCES bedRes(bedResID) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY (pID, day)

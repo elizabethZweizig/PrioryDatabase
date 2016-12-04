@@ -86,7 +86,8 @@ else {
       );
 
       // prepares the sql statement
-      //$sqlStatement = $db->prepare("insert into passengers (f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");
+      //$sqlStatement = $db->prepare("insert into passengers
+      //(f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");
 
       // binds parameters to be used in sql statement
       $sqlStatement->bindParam(':numPpl', $numPpl);
@@ -95,17 +96,28 @@ else {
       $sqlStatement->bindParam(':timeIn', $timeIn);
       $sqlStatement->bindParam(':timeOut', $timeOut);
       $sqlStatement->bindParam(':dateRecvd', $dateRecvd);
-      $sqlStatement->bindParam(':BedResID', $BedResID);
-      $sqlStatement->bindParam(':bedID', $bedID);
+      $sqlStatement->bindParam(':BedResID', $nullBedResID);
+      $sqlStatement->bindParam(':bedID', $nullBedID);
       //executes statement
       $sqlStatement->execute();
-      //$db->exec("insert into passengers values ('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
+      //$db->exec("insert into passengers values
+      //('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
 
-      $sqlBedres = $db->prepare('select bedResID from bedRes where checkIn == :checkIn AND checkOut == :checkOut AND dateRecvd == :dateRecvd;');
+      $sqlBedres = $db->prepare('select bedResID from bedRes where
+      checkIn == :checkIn AND checkOut == :checkOut AND dateRecvd == :dateRecvd;');
+
       $sqlBedres->bindParam(':checkIn', $checkIn);
       $sqlBedres->bindParam(':checkOut', $checkOut);
       $sqlBedres->bindParam(':dateRecvd', $dateRecvd);
-      $bedResID = $sqlBedres->execute();
+      $result = $sqlBedres->execute();
+
+
+      $bedResID = 0;
+      if($result->num_rows==1){
+        while($row = $result->fetch_assoc()) {
+          $bedResID = $row["bedResID"];
+        }
+      }
 
       //for every day being stayed
       $oneDay = 8.64e7;
@@ -116,11 +128,13 @@ else {
         $hours = $i % 3.6e6;
         $minutes = ($i - ($hours * 3.6e6))% 60000;
         $time = "".$hours.":".$minutes."";
-        $sqlNight->bindParam(':checkIn', $time);
+        $sqlNight->bindParam(':day', $time);
         $sqlNight->bindParam(':bedResID', $bedResID);
         $sqlNight->execute();
 
-        $sqlDay = $db->prepare('insert into nightVisit values (:person, :day, :tour);');
+        $sqlDay = $db->prepare('insert into dayVisit values (:person, :day, :tour);');
+        $sqlDay->bindParam(':person', $person);
+        $sqlDay->bindParam(':day', $time);
         $sqlDay->bindParam(':tour', $tour);
         $sqlDay->execute();
       }
