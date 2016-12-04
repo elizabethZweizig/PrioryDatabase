@@ -61,8 +61,8 @@ else {
     // sets vars = POST variables
     $person = $_POST['person'];
     $numPpl = $_POST['numPpl'];
-    $checkIn = $_POST['checkIn'];
-    $checkOut = $_POST['checkOut'];
+    $checkIn = new DateTime($_POST['checkIn']);
+    $checkOut = new DateTime($_POST['checkOut']);
     $timeIn = $_POST['timeIn'];
     $timeOut = $_POST['timeOut'];
     $dateRecvd = $_POST['dateRecvd'];
@@ -73,82 +73,81 @@ else {
     //prepares first sql (bedRes)
     $sqlStatement = $db->prepare(
       "insert into bedRes
-        values (
-          :BedResID,
-          :bedID,
-          :numPpl,
-          :checkIn,
-          :checkOut,
-          :timeIn,
-          :timeOut,
-          :dateRecvd
-        );"
-      );
+      values (
+        :BedResID,
+        :bedID,
+        :numPpl,
+        :checkIn,
+        :checkOut,
+        :timeIn,
+        :timeOut,
+        :dateRecvd
+      );"
+    );
 
-      // prepares the sql statement
-      //$sqlStatement = $db->prepare("insert into passengers
-      //(f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");
+    // prepares the sql statement
+    //$sqlStatement = $db->prepare("insert into passengers
+    //(f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");
 
-      // binds parameters to be used in sql statement
-      $sqlStatement->bindParam(':numPpl', $numPpl);
-      $sqlStatement->bindParam(':checkIn', $checkIn);
-      $sqlStatement->bindParam(':checkOut', $checkOut);
-      $sqlStatement->bindParam(':timeIn', $timeIn);
-      $sqlStatement->bindParam(':timeOut', $timeOut);
-      $sqlStatement->bindParam(':dateRecvd', $dateRecvd);
-      $sqlStatement->bindParam(':BedResID', $nullBedResID);
-      $sqlStatement->bindParam(':bedID', $nullBedID);
-      //executes statement
-      $sqlStatement->execute();
-      //$db->exec("insert into passengers values
-      //('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
+    // binds parameters to be used in sql statement
+    $sqlStatement->bindParam(':numPpl', $numPpl);
+    $sqlStatement->bindParam(':checkIn', date_format($checkIn,"Y-m-d"));
+    $sqlStatement->bindParam(':checkOut', date_format($checkOut,"Y-m-d"));
+    $sqlStatement->bindParam(':timeIn', $timeIn);
+    $sqlStatement->bindParam(':timeOut', $timeOut);
+    $sqlStatement->bindParam(':dateRecvd', $dateRecvd);
+    $sqlStatement->bindParam(':BedResID', $nullBedResID);
+    $sqlStatement->bindParam(':bedID', $nullBedID);
+    //executes statement
+    $sqlStatement->execute();
+    //$db->exec("insert into passengers values
+    //('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
 
-      $sqlBedres = $db->prepare('select bedResID from bedRes where
-      checkIn == :checkIn AND checkOut == :checkOut AND dateRecvd == :dateRecvd;');
+    //$sqlBedres = $db->prepare('select bedResID from bedRes where
+    // checkIn == :checkIn AND checkOut == :checkOut AND dateRecvd == :dateRecvd;');
+    $inString = date_format($checkIn,"Y-m-d");
+    $outString = date_format($checkOut,"Y-m-d");
+    //$sqlBedres->bindParam(':checkIn', date_format($checkIn,"Y-m-d") );
+    //  $sqlBedres->bindParam(':checkOut', date_format($checkOut,"Y-m-d"));
+    //    $sqlBedres->bindParam(':dateRecvd', $dateRecvd);
+    $result = $db->query("select bedResID
+    from bedRes
+    where checkIn == $inString AND checkOut == $outString  AND dateRecvd == $dateRecvd");
 
-      $sqlBedres->bindParam(':checkIn', $checkIn);
-      $sqlBedres->bindParam(':checkOut', $checkOut);
-      $sqlBedres->bindParam(':dateRecvd', $dateRecvd);
-      $result = $sqlBedres->execute();
 
-
-      $bedResID = 0;
-      if($result->num_rows==1){
-        while($row = $result->fetch_assoc()) {
-          $bedResID = $row["bedResID"];
-        }
-      }
-
-      //for every day being stayed
-      $oneDay = 8.64e7;
-      //TODO: make this work (is js)
-      for ($i = $checkIn.getTime(); i<=$checkOut.getTime(); $i+=$oneDay){
-        $sqlNight = $db->prepare('insert into nightVisit values (:person, :day, :bedResID);');
-        $sqlNight->bindParam(':person', $person);
-        $hours = $i % 3.6e6;
-        $minutes = ($i - ($hours * 3.6e6))% 60000;
-        $time = "".$hours.":".$minutes."";
-        $sqlNight->bindParam(':day', $time);
-        $sqlNight->bindParam(':bedResID', $bedResID);
-        $sqlNight->execute();
-
-        $sqlDay = $db->prepare('insert into dayVisit values (:person, :day, :tour);');
-        $sqlDay->bindParam(':person', $person);
-        $sqlDay->bindParam(':day', $time);
-        $sqlDay->bindParam(':tour', $tour);
-        $sqlDay->execute();
-      }
-
-      //TODO: notify admin of need to schedule beds. include bedResID and pID
-      //all new bedres should be tied to pID
-      //$to = NULL; //email of priory admin who sets up beds
-      //mail($to, "New Overnight Guest", "There is an individual wanting to overnight at the Priory from ".$checkIn." to ".$checkOut". Their current reservation has a BedResID of ".$BedResID."and their pID is ".$person.".");
+    $bedResID = 0;
+    foreach ($result as $row) {
+      $bedResID = $row["bedResID"];
     }
-    catch(PDOException $e)
-    {
-      die('Exception : '.$e->getMessage());
+
+    $sqlNight = $db->prepare('insert into nightVisit values (:person, :bedResID);');
+    $sqlNight->bindParam(':person', $person);
+    $sqlNight->bindParam(':bedResID', $bedResID);
+
+    $period = new DatePeriod(
+      $checkIn,
+      new DateInterval('P1D'),
+      $checkOut
+    );
+
+    foreach ($period as $day) {
+      $sqlDay = $db->prepare('insert into dayVisit values (:person, :day, :tour);');
+      $sqlDay->bindParam(':person', $person);
+      $sqlDay->bindParam(':day', date_format($day, "Y-m-d"));
+      $sqlDay->bindParam(':tour', $tour);
+      $sqlDay->execute();
     }
+
+    //TODO: notify admin of need to schedule beds. include bedResID and pID
+    //all new bedres should be tied to pID
+    //$to = NULL; //email of priory admin who sets up beds
+    //mail($to, "New Overnight Guest", "There is an individual wanting to overnight at the Priory from ".$checkIn." to$
   }
-  // sends to success page
-  header("Location: success.html");
-  ?>
+  catch(PDOException $e)
+  {
+    die('Exception : '.$e->getMessage());
+  }
+}
+// sends to success page
+header("Location: success.html");
+?>
