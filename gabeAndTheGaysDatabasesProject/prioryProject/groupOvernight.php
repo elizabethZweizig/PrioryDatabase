@@ -1,9 +1,8 @@
-<?php
-  require("userlogedin.php");
-?>
+<?php require('userlogedin.php'); ?>
 <!DOCTYPE html>
   <head>
   <title>Group Overnight Registrations</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <h4>Overnight Reservations:</h4>
@@ -11,7 +10,7 @@
       <!--goes to nightVisit, dayVisit, and bedResID-->
 
       <!--contact person, hidden, gotten from page value?-->
-      <input type="hidden" name="person" value="$_COOKIE['login']"/>
+      <input type="hidden" name="person" value="$_COOKIE['login'].value"/>
 
       <!--name of group-->
       What is your group's name?
