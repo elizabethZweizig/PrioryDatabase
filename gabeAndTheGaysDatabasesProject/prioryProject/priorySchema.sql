@@ -10,7 +10,7 @@ CREATE TABLE login (
   address TEXT,
   email TEXT NOT NULL,
   cellNo TEXT CHECK (length(cellNo) == 10), --format needed
-  username TEXT,
+  username TEXT UNIQUE,
   pwd TEXT, --password
   admin INTEGER   -- 1 if true, 0 if false
 );
@@ -73,7 +73,7 @@ CREATE TABLE meetRes (
 CREATE TABLE groupInfo (
   groupID INTEGER PRIMARY KEY,
   contactPerson INTEGER,
-  groupName TEXT,
+  groupName TEXT UNIQUE,
   groupNeeds TEXT,
   tour INTEGER,
   FOREIGN KEY (contactPerson) REFERENCES login(pID) ON DELETE CASCADE ON UPDATE CASCADE
