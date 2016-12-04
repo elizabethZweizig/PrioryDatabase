@@ -101,6 +101,14 @@ CREATE TABLE groupRooms (
   PRIMARY KEY (groupID, meetResID)
 );
 
+CREATE TABLE groupEquip (
+  groupID INTEGER,
+  equipResID INTEGER,
+  FOREIGN KEY (groupID) REFERENCES groupInfo(groupID)  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (equipResID) REFERENCES equipRes(equipResID)  ON DELETE CASCADE ON UPDATE CASCADE,
+  PRIMARY KEY (groupID, equipResID)
+);
+
 CREATE TABLE prioryEvent (
   eventID INTEGER PRIMARY KEY,
   startDate TEXT,
