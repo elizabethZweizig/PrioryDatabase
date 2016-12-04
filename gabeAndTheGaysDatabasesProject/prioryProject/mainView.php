@@ -14,6 +14,7 @@
     $login = "SELECT * FROM login";
     $equip = "SELECT * FROM equipment";
     $equipRes = "SELECT * FROM equipRes";
+    $groupEquip = "SELECT * FROM groupEquip";
     $bedroom = "SELECT * FROM bedroom";
     $bedRes = "SELECT * FROM bedRes";
     $meetRoom = "SELECT * FROM meetRoom";
@@ -46,6 +47,7 @@
     $result15 = $db->query($eventRoster);
     $result16 = $db->query($groupOvernight);
     $result17 = $db->query($overnightBeds);
+    $result18 = $db->query($groupEquip);
 
     echo "<h3>Login Info</h3>";
     echo "<table border='1'>";
