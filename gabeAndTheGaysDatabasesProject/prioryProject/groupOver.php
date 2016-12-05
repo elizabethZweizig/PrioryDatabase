@@ -74,24 +74,22 @@ else {
     //prepares first sql (bedRes)
     $sqlStatement = $db->prepare('insert into groupInfo
     (groupID, contactPerson, groupName, groupNeeds, tour) values
-    (:groupID, :person, :groupName, :groupNeeds, :tour);');
-
-    // prepares the sql statement
-    //$sqlStatement = $db->prepare("insert into passengers
-    //(f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");
+    (:groupID, :contactPerson, :groupName, :groupNeeds, :tour);');
 
     // binds parameters to be used in sql statement
-    $sqlStatement->bindParam(':person', $person);
+    $sqlStatement->bindParam(':contactPerson', $person);
     $sqlStatement->bindParam(':groupName', $groupName);
     $sqlStatement->bindParam(':groupNeeds', $groupNeeds);
     $sqlStatement->bindParam(':tour', $tour);
     $sqlStatement->bindParam(':groupID', $nullGroupID);
-    $nullBedResID = NULL;
-    $nullBedID = 0; //wont acceppt null
     //executes statement
     $sqlStatement->execute();
-    //$db->exec("insert into passengers values
-    //('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
+
+
+    $nullBedResID = NULL;
+    $nullBedID = 0; //wont acceppt null
+
+
     $sqlGetGroupID = $db->prepare('select groupID from groupInfo
     where contactPerson == :person and groupName == :groupName;');
     $sqlGetGroupID->bindParam(':person', $person);
@@ -128,12 +126,16 @@ else {
     //executes statement
     $sqlStatement->execute();
 
-    $sqlBedres = $db->prepare('select bedResID from bedRes
-    where checkIn == :checkIn and checkOut == :checkOut and dateRecvd == :dateRecvd;');
-    $sqlBedres->bindParam(':checkIn', $checkIn);
-    $sqlBedres->bindParam(':checkOut', $checkOut);
-    $sqlBedres->bindParam(':dateRecvd', $dateRecvd);
-    $bedResID = $sqlBedres->execute();
+    $result = $db->query("select bedResID
+    from bedRes
+    where checkIn == $checkIn AND checkOut == $checkOut  AND dateRecvd == $dateRecvd");
+
+
+    $bedResID = 0;
+    foreach ($result as $row) {
+      $bedResID = $row["bedResID"];
+    }
+
     $nullovernightID = NULL;
 
     $sqlOB = $db->prepare('insert into overnightBeds values (:overnightID, :bedResID);');
@@ -141,12 +143,14 @@ else {
     $sqlOB->bindParam(':overnightID', $nullovernightID);
     $sqlOB->execute();
 
-    $sqlover = $db->prepare('select overnightID from overnightBeds where bedResID == :bedResID;');
-    $sqlover->bindParam(':bedResID', $bedResID);
-    $overnightID = $sqlover->execute();
+    $quo = $db->query("select overnightID from overnightBeds where bedResID == $bedResID");
+    $overnightID = 0;
+    foreach($quo as $tuple){
+      $overnightID = $tuple["overnightID"];
+    }
 
     $sqlGO = $db->prepare('insert into groupOvernight values (:overnightID, :groupID);');
-    $sqlGO->bindParam(':bedResID', $bedResID);
+    $sqlGO->bindParam(':groupID', $groupID);
     $sqlGO->bindParam(':overnightID', $overnightID);
     $sqlGO->execute();
 
