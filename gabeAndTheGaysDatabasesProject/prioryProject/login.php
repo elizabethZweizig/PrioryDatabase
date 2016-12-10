@@ -47,6 +47,7 @@ else {
   {
     //open the sqlite database file
     $db = new PDO('sqlite:./database/priorydb.db');
+
     // Set errormode to exceptions
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -63,10 +64,10 @@ else {
     $zeroAdmin = 0;
 
     // prepares the sql statement
-    //$sqlStatement = $db->prepare("insert into login (pID, f_name, l_name, address, em$
+    //$sqlStatement = $db->prepare("insert into login (pID, f_name, l_name, address, email, cellNo, username, pwd, admin) values (:nullPID, :fname, :lname, :addr, :eMail, :cell, :user$
     $sqlStatement = $db->prepare("insert into login (pID, f_name, l_name, address, email, cellNo, username, pwd, admin) values (:pID, :f_name, :l_name, :address, :email, :cellNo, :username, :pwd, :admin); ");
-    // binds parameters to be used in sql statement
 
+    // binds parameters to be used in sql statement
     $sqlStatement->bindParam(':pID', $nullPID);
     $sqlStatement->bindParam(':f_name', $fname);
     $sqlStatement->bindParam(':l_name', $lname);
@@ -79,16 +80,16 @@ else {
 
     //executes statement
     $sqlStatement->execute();
-
+    
     // set login cookie
     setCookie("login", $_POST['pID'], time() + 3600);       // expires after an hour
     $_COOKIE["login"];
   }
   catch(PDOException $e)
   {
-      die('Exception : '.$e->getMessage());
+    die('Exception : '.$e->getMessage());
   }
 }
-// sends to success page
-header('Location: success.html');
+// sends to success page if no exception thrown
+header('Location: showUserInfo.php');
 ?>

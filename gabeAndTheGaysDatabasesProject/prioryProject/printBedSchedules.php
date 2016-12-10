@@ -47,11 +47,11 @@ echo "</table>";
 
 //echo "<h3>Bedroom Reservation Info</h3>";
 //echo "<table>";
-//echo "<tr style='font-weight:bold'><td>Bedroom Reservation No.</td><td>Bedroom Name</td><td># People in R$
+//echo "<tr style='font-weight:bold'><td>Bedroom Reservation No.</td><td>Bedroom Name</td><td># People in Room</td><td>CheckIn</td><td>CheckOut</td><td>Date Received</td></tr>";
 //loop through each tuple in result set
 //foreach($resResult as $tuple)
 //{
-//  echo "<tr><td>$tuple[bedResID]</td><td>$tuple[bedID]</td><td>$tuple[numPpl]</td><td>$tuple[checkIn] ", $
+//  echo "<tr><td>$tuple[bedResID]</td><td>$tuple[bedID]</td><td>$tuple[numPpl]</td><td>$tuple[checkIn] ", " $tuple[timeIn] </td><td>$tuple[checkOut] ", " $tuple[timeOut]</td><td>$tuple[dateRecvd]</td$
 //}
 //echo "</table>";
 

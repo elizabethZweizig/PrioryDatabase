@@ -1,13 +1,19 @@
+<?php require("userlogedin.php"); ?>
+<?php include("nav.html"); ?>
+
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Main Table Viewer</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 <body>
-<h2>All Tables Here</h2>
-<p>
-  <?php
+  <p>
+    <?php
     // open db file
     $db = new PDO('sqlite:./database/priorydb.db');
     // Set errormode to exceptions
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     //select * from all tables
     // need to add one more table for all reservations
@@ -50,137 +56,188 @@
     $result18 = $db->query($groupEquip);
 
     echo "<h3>Login Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result1 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Equipment Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result2 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Equipment Reservation Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result3 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
+    }
+    echo "</table>";
+
+    echo "<h3>Group Equipment Reservations</h3>";
+    echo "<table>";
+    $i = 0;
+    foreach ($result18 as $tuple)
+    {
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Bedroom Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result4 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Bedroom Reservation Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result5 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
     echo "<h4>Notes:</h4>";
@@ -189,314 +246,358 @@
     echo "</ul>";
 
     echo "<h3>Meeting Room Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result6 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
     echo "<h4>Notes:</h4>";
     echo "<ul>";
     echo "<li>MultiPurpose Rooms arranged lecture style - tables and chairs in
-      each room is comfortable for up to 40 people. MP Rooms 1 and 2 combined
-      accomodates 150 people lecture style and 125 at tables. Groups larger than
-      100 will be charged an extra $1 per person</li>
-      <li>$20 garbage fee for catered meal in Sophia only</li>
-      <li>Guadalupe Room has a coffee table and 6-8 padded chairs</li>
-      <li>Internet access, overhead projector, TV/VCR, and garbage fee for catered
-      meals are all included in the MultiPurpose room cost</li>";
+    each room is comfortable for up to 40 people. MP Rooms 1 and 2 combined
+    accomodates 150 people lecture style and 125 at tables. Groups larger than
+    100 will be charged an extra $1 per person</li>
+    <li>$20 garbage fee for catered meal in Sophia only</li>
+    <li>Guadalupe Room has a coffee table and 6-8 padded chairs</li>
+    <li>Internet access, overhead projector, TV/VCR, and garbage fee for catered
+    meals are all included in the MultiPurpose room cost</li>";
     echo "</ul>";
 
     echo "<h3>Meeting Room Reservation Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result7 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Group Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result9 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Day Visit Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result10 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Night Visit Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result11 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Group Rooms Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result12 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Priory Event Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result13 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Event Room Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result14 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Event Roster Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result15 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Group Overnight Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result16 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
     echo "<h3>Overnight Beds Info</h3>";
-    echo "<table border='1'>";
+    echo "<table>";
     $i = 0;
     foreach ($result17 as $tuple)
     {
-            if ($i == "0") {
-                    echo "<tr style='font-weight:bold'>";
-                    foreach ($tuple as $key => $value)
-                    {
-                            echo "<td>";
-                            print_r($key);
-                            echo "</td>";
-                    }
-                    echo "</tr>";
-            }
-            echo "<tr>";
-            foreach ($tuple as $key => $value)
-            {
-                    echo "<td>";
-                    print_r($value);
-                    echo "</td>";
-            }
-            echo "</tr>";
-            $i++;
+      if ($i == "0") {
+        echo "<tr style='font-weight:bold'>";
+        foreach ($tuple as $key => $value)
+        {
+          if (!is_int($key)) {
+            echo "<td>";
+            print_r($key);
+            echo "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "<tr>";
+      foreach ($tuple as $key => $value)
+      {
+        if (!is_int($key)) {
+          echo "<td>";
+          print_r($value);
+          echo "</td>";
+        }
+      }
+      echo "</tr>";
+      $i++;
     }
     echo "</table>";
 
-  ?>
-</p>
+    ?>
+  </p>
 </body>
 </html>

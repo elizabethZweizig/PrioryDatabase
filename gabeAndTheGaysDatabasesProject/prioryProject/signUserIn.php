@@ -31,9 +31,9 @@ $count = count($result->fetchAll());
 if ($count == 1) {
   setCookie("login", $_POST['username'], time() + 3600);       // expires after an hour
   $_COOKIE["login"];
-
+  
   //echo "SUCCESS";
-  header('Location: successfulLogin.php');
+  header('Location: showUserInfo.php');
 }
 else {
   //echo "CATASTROPHIC FAILURE";

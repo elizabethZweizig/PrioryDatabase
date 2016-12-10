@@ -43,35 +43,36 @@ else {
 
     //prepares first sql (bedRes)
     $sqlStatement = $db->prepare(
-      "insert into prioryEvent
-        values (
-          :EventID,
-          :startDate,
-          :endDate,
-          :name,
-          :description
-        );"
-      );
+    "insert into prioryEvent
+    values (
+    :EventID,
+    :startDate,
+    :endDate,
+    :name,
+    :description
+  );"
+);
 
-      // prepares the sql statement
-      //$sqlStatement = $db->prepare("insert into passengers (f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");
+// prepares the sql statement
+//$sqlStatement = $db->prepare("insert into passengers (f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");
 
-      // binds parameters to be used in sql statement
-      $sqlStatement->bindParam(':EventID', $nullEventID);
-      $sqlStatement->bindParam(':startDate', $startDate);
-      $sqlStatement->bindParam(':endDate', $endDate);
-      $sqlStatement->bindParam(':name', $name);
-      $sqlStatement->bindParam(':description', $description);
-      //executes statement
-      $sqlStatement->execute();
-      //$db->exec("insert into passengers values ('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
+// binds parameters to be used in sql statement
+$sqlStatement->bindParam(':EventID', $nullEventID);
+$sqlStatement->bindParam(':startDate', $startDate);
+$sqlStatement->bindParam(':endDate', $endDate);
+$sqlStatement->bindParam(':name', $name);
+$sqlStatement->bindParam(':description', $description);
+//executes statement
+$sqlStatement->execute();
 
-    }
-    catch(PDOException $e)
-    {
-      die('Exception : '.$e->getMessage());
-    }
-  }
-  // sends to success page
-  header("Location: success.html");
-  ?>
+//$db->exec("insert into passengers values ('$_POST[f_name]', '$_POST[m_name]', '$_POST[l_name]', '$_POST[ssn]');");
+
+}
+catch(PDOException $e)
+{
+  die('Exception : '.$e->getMessage());
+}
+}
+// sends to success page
+header("Location: success.html");
+?>

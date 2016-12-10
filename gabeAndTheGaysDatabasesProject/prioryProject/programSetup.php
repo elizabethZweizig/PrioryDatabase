@@ -1,10 +1,15 @@
+<?php require("userlogedin.php"); ?>
+<?php include("nav.html"); ?>
+
 <!DOCTYPE html>
   <head>
   <title>Priory Program Setup</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <!--TODO: admin require-->
-    <h4>Program Setup:</h4>
+        <!--TODO: admin require-->
+    <div class="divclass">
+    <h3>Program Setup</h3>
     <form action="prioryEvent.php" method="post">
       <!--prioryEvent (
         eventID INTEGER PRIMARY KEY,
@@ -27,10 +32,11 @@
       <input type="text" name="name" required/></br>
 
       <!--program description-->
-      Description:
-      <input type="text" name="description"/></br>
+        Description:
+        <input type="text" name="description"/></br>
 
       <!--submitting form and required explain-->
       <input type="submit"/> <h6 style="color:red">*required</h6>
     </form>
+    </div>
   </body>

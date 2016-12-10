@@ -1,3 +1,10 @@
+<!DOCTYPE HTML>
+<head>
+    <title>Admin Access Check</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="divclass">
 <?php require("userlogedin.php");
 
   $db = new PDO('sqlite:./database/priorydb.db');
@@ -11,8 +18,10 @@
   $count = count($result->fetchAll());
 
   if ($count != 1) {
-    echo "<p>Insufficient permissions to access this page</p>";
-    echo "<a href = 'navigationPage.html'>Back to Navigation</a>";
+    echo "<p>Insufficient permissions to access this page. Admin privileges needed.</p>";
+    echo "<a href = 'navigationPage.php'>Back to Navigation</a>";
     die();
   }
 ?>
+</div>
+</body>

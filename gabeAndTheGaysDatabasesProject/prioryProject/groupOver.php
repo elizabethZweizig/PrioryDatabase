@@ -57,9 +57,9 @@ else {
     // Set errormode to exceptions
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
     // sets vars = POST variables
     $person = $_POST['person'];
+    //    $person = $db->query("Select pID from login where username == 'person';");
     $numPpl = $_POST['numPpl'];
     $groupName = $_POST['groupName'];
     $groupNeeds = $_POST['groupNeeds'];
@@ -85,7 +85,6 @@ else {
     //executes statement
     $sqlStatement->execute();
 
-
     $nullBedResID = NULL;
     $nullBedID = 0; //wont acceppt null
 
@@ -97,72 +96,72 @@ else {
     $groupID = $sqlGetGroupID->execute();
 
     $sqlStatement = $db->prepare(
-      "insert into bedRes
-      values (
-        :BedResID,
-        :bedID,
-        :numPpl,
-        :checkIn,
-        :checkOut,
-        :timeIn,
-        :timeOut,
-        :dateRecvd
-      );"
-    );
+    "insert into bedRes
+    values (
+    :BedResID,
+    :bedID,
+    :numPpl,
+    :checkIn,
+    :checkOut,
+    :timeIn,
+    :timeOut,
+    :dateRecvd
+  );"
+);
 
-    // prepares the sql statement
-    //$sqlStatement = $db->prepare("insert into passengers
-    //(f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");
+// prepares the sql statement
+//$sqlStatement = $db->prepare("insert into passengers
+//(f_name, m_name, l_name, ssn) values (:f_name, :m_name, :l_name, :ssn); ");
 
-    // binds parameters to be used in sql statement
-    $sqlStatement->bindParam(':bedID', $nullBedID);
-    $sqlStatement->bindParam(':BedResID', $nullBedResID);
-    $sqlStatement->bindParam(':numPpl', $numPpl);
-    $sqlStatement->bindParam(':checkIn', $checkIn);
-    $sqlStatement->bindParam(':checkOut', $checkOut);
-    $sqlStatement->bindParam(':timeIn', $timeIn);
-    $sqlStatement->bindParam(':timeOut', $timeOut);
-    $sqlStatement->bindParam(':dateRecvd', $dateRecvd);
-    //executes statement
-    $sqlStatement->execute();
+// binds parameters to be used in sql statement
+$sqlStatement->bindParam(':bedID', $nullBedID);
+$sqlStatement->bindParam(':BedResID', $nullBedResID);
+$sqlStatement->bindParam(':numPpl', $numPpl);
+$sqlStatement->bindParam(':checkIn', $checkIn);
+$sqlStatement->bindParam(':checkOut', $checkOut);
+$sqlStatement->bindParam(':timeIn', $timeIn);
+$sqlStatement->bindParam(':timeOut', $timeOut);
+$sqlStatement->bindParam(':dateRecvd', $dateRecvd);
+//executes statement
+$sqlStatement->execute();
 
-    $result = $db->query("select bedResID
-    from bedRes
-    where checkIn == $checkIn AND checkOut == $checkOut  AND dateRecvd == $dateRecvd");
+$result = $db->query("select bedResID
+from bedRes
+where checkIn == $checkIn AND checkOut == $checkOut  AND dateRecvd == $dateRecvd");
 
 
-    $bedResID = 0;
-    foreach ($result as $row) {
-      $bedResID = $row["bedResID"];
-    }
+$bedResID = 0;
+foreach ($result as $row) {
+  $bedResID = $row["bedResID"];
+}
 
-    $nullovernightID = NULL;
+$nullovernightID = NULL;
 
-    $sqlOB = $db->prepare('insert into overnightBeds values (:overnightID, :bedResID);');
-    $sqlOB->bindParam(':bedResID', $bedResID);
-    $sqlOB->bindParam(':overnightID', $nullovernightID);
-    $sqlOB->execute();
+$sqlOB = $db->prepare('insert into overnightBeds values (:overnightID, :bedResID);');
+$sqlOB->bindParam(':bedResID', $bedResID);
+$sqlOB->bindParam(':overnightID', $nullovernightID);
+$sqlOB->execute();
 
-    $quo = $db->query("select overnightID from overnightBeds where bedResID == $bedResID");
-    $overnightID = 0;
-    foreach($quo as $tuple){
-      $overnightID = $tuple["overnightID"];
-    }
+$quo = $db->query("select overnightID from overnightBeds where bedResID == $bedResID");
+$overnightID = 0;
+foreach($quo as $tuple){
+  $overnightID = $tuple["overnightID"];
+}
 
-    $sqlGO = $db->prepare('insert into groupOvernight values (:overnightID, :groupID);');
-    $sqlGO->bindParam(':groupID', $groupID);
-    $sqlGO->bindParam(':overnightID', $overnightID);
-    $sqlGO->execute();
+$sqlGO = $db->prepare('insert into groupOvernight values (:overnightID, :groupID);');
+$sqlGO->bindParam(':groupID', $groupID);
+$sqlGO->bindParam(':overnightID', $overnightID);
+$sqlGO->execute();
 
-    //TODO: notify admin of need to schedule beds for all people. include bedResID and overnightID
-    //all new bed res should be tied to overnight id
-    //$to = NULL; //email of priory admin who sets up beds
-    //mail($to, "New Overnight Guests", "There is a group of ".$numPpl." wanting to overnight at the Priory from ".$checkIn." to ".$checkOut". Their current reservation has a BedResID of ".$BedResID."and an overnightID of ".$overnightID.".");
-  }
-  catch(PDOException $e)
-  {
-    die('Exception : '.$e->getMessage());
-  }
+//TODO: notify admin of need to schedule beds for all people. include bedResID and overnightID
+//all new bed res should be tied to overnight id
+//$to = NULL; //email of priory admin who sets up beds
+//mail($to, "New Overnight Guests", "There is a group of ".$numPpl." wanting to overnight at the Priory from ".$checkIn." to ".$checkOut". Their current reservation has a BedResID of ".$BedResID."and$
+}
+catch(PDOException $e)
+{
+  die('Exception : '.$e->getMessage());
+}
 }
 // sends to success page
 header("Location: success.html");

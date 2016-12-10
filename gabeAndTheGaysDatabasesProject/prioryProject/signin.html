@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
   <title>Log In</title>
-  </head>
-  <body>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="divclass">
+    <h3>Sign in to the Priory</h3>
     <form action="signUserIn.php" method="post">
-      Enter Username:
+      Username:
       <input type="text" name="username" required/></br>
 
-      Enter Password:
+      Password:&nbsp
       <input type="password" name="pwd" required/></br>
 
       <button type="submit">Login</button>
-    </form>
-  </body>
+
+    </br></br>
+
+    Don't have an account? <a href="makeAccount.php">Make a new one here</a>
+  </form>
+</div>
+</body>
 </html>
